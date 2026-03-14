@@ -9,7 +9,7 @@ export default function ModalScreen() {
     <ThemedView style={styles.container}>
       <ThemedText type="title">This is a modal</ThemedText>
       <Link href="/" dismissTo style={styles.link}>
-        <ThemedText type="link">Go to home screen</ThemedText>
+        <ThemedText type="link" style={styles.linkText}>Go to home screen TESTE</ThemedText>
       </Link>
     </ThemedView>
   );
@@ -26,4 +26,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
     paddingVertical: 15,
   },
+
+  linkText: {
+    color: '#ff0000',
+  }
 });
