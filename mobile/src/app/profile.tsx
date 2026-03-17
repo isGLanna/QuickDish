@@ -1,4 +1,3 @@
-import { Stack } from 'expo-router'
 import { useState } from 'react'
 import { View, Text, Button, StyleSheet, Image } from 'react-native'
 
