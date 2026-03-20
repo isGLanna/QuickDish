@@ -4,12 +4,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import Profile from './app/profile'
 import Login from './app/login'
-import DeliveryHome from './app/delivery-home'
+import Home from './app/home'
 
 export type RootstackParamList = {
   Login: undefined
   Profile: undefined
-  DeliveryHome: undefined
+  Home: undefined
 }
 
 const Stack = createNativeStackNavigator<RootstackParamList>()
@@ -20,7 +20,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="DeliveryHome" component={DeliveryHome} />
+        <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -37,7 +37,7 @@ export default function HomeScreen() {
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <Link href="/delivery-home">
+        <Link href="/home">
           <Link.Trigger>
             <ThemedText type="subtitle">Step 2: Explore</ThemedText>
           </Link.Trigger>
@@ -57,7 +57,7 @@ export default function HomeScreen() {
                 onPress={() => alert('Delete pressed')}
               />
             </Link.Menu>
-          </Link.Menu>
+          </Link.Menu>''
         </Link>
 
         <ThemedText>
