@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
   ContentItems: {
     flex: 1,
     margin: 4,
-    minWidth: 175,
-    width: '50%',
+    width: 175,
+    maxWidth: 272,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 8,

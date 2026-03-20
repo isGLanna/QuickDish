@@ -54,7 +54,7 @@ const recommendedItems = [
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string>('')
-  const collumns = Dimensions.get('window').width > 500 ? Math.floor(Dimensions.get('window').width / 200) : 2
+  const collumns = Dimensions.get('window').width > 500 ? Math.floor(Dimensions.get('window').width / 175) : 2
   
 
   return (
@@ -76,7 +76,7 @@ export default function Home() {
       {/* POPULAR ITEMS */}
 
       <View>
-        <Text>Mais populares</Text>
+        <Text style={styles.title}>Mais populares</Text>
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -88,7 +88,7 @@ export default function Home() {
       </View>
 
       <View>
-        <Text>Sugestões de pedidos</Text>
+        <Text style={styles.title}>Sugestões de pedidos</Text>
         <FlatList
           numColumns={collumns}
           data={recommendedItems}
@@ -105,7 +105,6 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f7e8d2',
-    paddingBottom: 8,
     paddingHorizontal: 8,
   },
 
@@ -113,7 +112,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f9f9f9',
     borderRadius: 8,
+    marginBottom: 8,
     padding: 4,
-    gap: 16,
   },
+
+  title: {
+    backgroundColor: '#f9f9f9',
+    fontSize: 16,
+    alignSelf: 'flex-start',
+    fontWeight: '400',
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 100,
+    boxShadow: '0 4px 4px rgba(0,0,0,0.2)',
+  }
 })
