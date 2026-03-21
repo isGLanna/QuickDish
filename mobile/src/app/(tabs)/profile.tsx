@@ -9,6 +9,7 @@ export default function Profile() {
       <Image source={{ uri: user.photo }} style={styles.avatar} />
       <Text style={styles.p}>User: {user.name} {user.surname}</Text>
       <Text style={styles.p}>Age: {user.age}</Text>
+      <Text>TESTANDO</Text>
     </View>
   )
 }
@@ -18,12 +19,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    
     gap: 20,
   },
   avatar: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 200,
+    height: 200,
+    borderRadius: '50%',
   },
   p: {
     fontSize: 24,

@@ -2,9 +2,9 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import Profile from './app/profile'
+import Profile from './app/(tabs)/profile'
 import Login from './app/login'
-import Home from './app/home'
+import Home from './app/(tabs)/index'
 
 export type RootstackParamList = {
   Login: undefined
