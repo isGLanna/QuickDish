@@ -1,17 +1,7 @@
-import { View, ScrollView, Text, FlatList, StyleSheet, Dimensions } from 'react-native'
+import { View, Text, FlatList, StyleSheet, Dimensions } from 'react-native'
 import { SearchBar } from '../../components/molecules/search-bar'
-import { CategoryCard } from './category'
-import { Card } from './card'
-import { useState } from 'react'
-
-
-interface Food {
-  id: number
-  name: string
-  price: number
-  image: string
-  rating: number
-}
+import { CategoryCard, Card } from '../../components/organisms/home/index'
+import { useState, useCallback } from 'react'
 
 const categories = [
   { id: 1, category: 'Pizza', emoji: '🍕' },
@@ -55,64 +45,82 @@ const recommendedItems = [
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string>('')
   const collumns = Dimensions.get('window').width > 500 ? Math.floor(Dimensions.get('window').width / 175) : 2
-  
+  const [filters, setFilters] = useState<string[]>([])
 
-  return (
-    <ScrollView style={styles.container}>
+  /* Método deve ser trocado por uma consulta oa backend */
+  const handlerFilterItems = useCallback((query: string) => {
+    setFilters(prev => {
+      if (prev.includes(query)) {
+        return prev.filter(filter => filter !== query)
+      }
+      return [...prev, query]
+    })
+  }, [])
+
+  const renderHeader = () => (
+    <View>
       {/* HEADER */}
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
       {/* CATEGORIES */}
-      <View>
+      <View style={styles.section}>
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
           data={categories}
           keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => <CategoryCard item={item} />}
+          renderItem={({item}) => <CategoryCard item={item} handleFilter={handlerFilterItems} />}
           />
       </View>
 
       {/* POPULAR ITEMS */}
 
-      <View>
+      <View style={styles.section}>
         <Text style={styles.title}>Mais populares</Text>
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={popularItems}
+          data={popularItems.filter(item => filters.length === 0 || filters.includes(item.category))}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => <Card item={item} />}
           style={styles.gridItems}
           />
       </View>
 
-      <View>
-        <Text style={styles.title}>Sugestões de pedidos</Text>
-        <FlatList
-          numColumns={collumns}
-          data={recommendedItems}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => <Card item={item} />}
-          style={styles.gridItems}
-          />
-      </View>
+      <Text style={styles.title}>Sugestões de pedidos</Text>
+    </View>
+  )
 
-    </ ScrollView>
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={recommendedItems.filter(item => filters.length === 0 || filters.includes(item.category))}
+        keyExtractor={item => item.id.toString()}
+        numColumns={collumns}
+        renderItem={({item}) => <Card item={item} />}
+        ListHeaderComponent={renderHeader}
+        showsVerticalScrollIndicator={false}
+        columnWrapperStyle={ styles.gridItems }
+        contentContainerStyle={{ paddingBottom: 32 }}
+        />
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: '#f7e8d2',
     paddingHorizontal: 8,
   },
 
+  section: {
+    marginBottom: 16,
+  },
+
   gridItems: {
-    flex: 1,
     backgroundColor: '#f9f9f9',
     borderRadius: 8,
-    marginBottom: 8,
     padding: 4,
   },
 
@@ -122,8 +130,9 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     fontWeight: '400',
     paddingVertical: 4,
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
+    marginBottom: 4,
     borderRadius: 100,
-    boxShadow: '0 4px 4px rgba(0,0,0,0.2)',
+    boxShadow: '0 4px 4px rgba(0,0,0,0.1)',
   }
 })

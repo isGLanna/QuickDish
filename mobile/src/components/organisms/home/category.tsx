@@ -1,23 +1,24 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { Pressable, Text, StyleSheet } from 'react-native'
 
-interface Categories {
+interface CategoriesProps {
   id: number
   category: string
-  emoji: string
+  emoji: string 
 }
 
-export function CategoryCard ({ item }: { item: Categories}) {
+export function CategoryCard ({ item, handleFilter }: { item: CategoriesProps; handleFilter: (query: string) => void }) {
   return (
-    <View style={styles.ContentCategories}>
+    <Pressable
+      style={styles.ContentCategories}
+      onPress={() => handleFilter(item.category)}>
       <Text>{item.category}</Text>
       <Text style={styles.Emoji}>{item.emoji}</Text>
-    </View>
+    </Pressable>
   )
 }
 
 const styles = StyleSheet.create({
   ContentCategories: {
-    flex: 1,
     backgroundColor: '#f9f9f9',
     width: 100,
     aspectRatio: 3/2,
@@ -26,6 +27,7 @@ const styles = StyleSheet.create({
     padding: 8,
     alignItems: 'center',
     justifyContent: 'center',
+    userSelect: 'none',
   },
   Emoji: {
     fontSize: 18,
