@@ -1,18 +1,23 @@
-import { View, Text, FlatList, StyleSheet, Dimensions } from 'react-native'
+import { View, FlatList, StyleSheet, Dimensions } from 'react-native'
 
 import { ThemedView } from '@/components/themed-view'
 import { ThemedText } from '@/components/themed-text'
+import { ThemedFlatList } from '@/components/themed-flatlist'
 
 import { SearchBar } from '@/components/molecules/search-bar'
 import { CategoryCard, Card } from '@/components/organisms/home/index'
-import { categories, popularItems, recommendedItems } from '@/api/food'
+import { categories, popularItems, restaurants, recommendedItems } from '@/api/food'
 import { useState, useCallback } from 'react'
 
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string>('')
-  const collumns = Dimensions.get('window').width > 500 ? Math.floor(Dimensions.get('window').width / 175) : 2
   const [filters, setFilters] = useState<string[]>([])
+  const collumns = Dimensions.get('window').width > 500 ? Math.floor(Dimensions.get('window').width / 175) : 2
+  const firstLine = 0
+  const lastLine = useCallback(() => {
+    return Math.ceil(recommendedItems.length / collumns) - 1
+  }, [])
 
   /* Método deve ser trocado por uma consulta oa backend */
   const handlerFilterItems = useCallback((query: string) => {
@@ -31,8 +36,9 @@ export default function Home() {
 
       {/* CATEGORIES */}
       <View style={styles.section}>
-        <FlatList
+        <ThemedFlatList
           horizontal
+          style={{ backgroundColor: 'transparent' }}
           showsHorizontalScrollIndicator={false}
           data={categories}
           keyExtractor={item => item.id.toString()}
@@ -43,23 +49,36 @@ export default function Home() {
       {/* POPULAR ITEMS */}
 
       <View style={styles.section}>
-        <ThemedText style={styles.title}>Mais populares</ThemedText>
-        <FlatList
+        <ThemedText style={styles.title} darkColor='#222'>Mais populares</ThemedText>
+        <ThemedFlatList
           horizontal
+          style={ styles.gridItems }
           showsHorizontalScrollIndicator={false}
           data={popularItems.filter(item => filters.length === 0 || filters.includes(item.category))}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => <Card item={item} />}
-          style={styles.gridItems}
           />
       </View>
 
-      <ThemedText style={styles.title}>Sugestões de pedidos</ThemedText>
+      {/* RESTAURANTS */}
+      <View style={ styles.section }>
+        <ThemedText style={styles.title} darkColor='#222'>Restaurantes</ThemedText>
+        <ThemedFlatList
+          horizontal
+          style={ styles.gridItems }
+          showsHorizontalScrollIndicator={false}
+          data={restaurants}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({item}) => <Card item={item}/>}
+          />
+      </View>
+
+      <ThemedText style={styles.title} darkColor='#222'>Sugestões de pedidos</ThemedText>
     </View>
   )
 
   return (
-    <View style={styles.container}>
+    <ThemedView style={styles.container}>
       <FlatList
         data={recommendedItems.filter(item => filters.length === 0 || filters.includes(item.category))}
         keyExtractor={item => item.id.toString()}
@@ -67,10 +86,10 @@ export default function Home() {
         renderItem={({item}) => <Card item={item} />}
         ListHeaderComponent={renderHeader}
         showsVerticalScrollIndicator={false}
-        columnWrapperStyle={ styles.gridItems }
+        columnWrapperStyle={[ styles.gridItems ]}
         contentContainerStyle={{ paddingBottom: 32 }}
         />
-    </View>
+    </ThemedView>
   )
 }
 
@@ -85,9 +104,23 @@ const styles = StyleSheet.create({
   },
 
   gridItems: {
-    backgroundColor: '#f9f9f9',
-    borderRadius: 8,
-    padding: 4,
+    backgroundColor: '#e40e0e',
+    borderRadius: 15,
+  },
+
+  uniqueLine: {
+    borderRadius: 50,
+    backgroundColor: '#fd0000',
+  },
+
+  firstLine: {
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+  },
+
+  lastLine: {
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
   },
 
   title: {

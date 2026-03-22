@@ -1,44 +1,44 @@
-import { Image, Pressable, View } from 'react-native'
-import { ThemedView } from '@/components/themed-view'
+import { Image, View } from 'react-native'
 import { ThemedText } from '@/components/themed-text'
+import { ThemedPressable } from '@/components/themed-pressable'
 
 import { StyleSheet } from 'react-native'
 
 interface CardProps {
   id: number
-  name: string
-  price: number
+  name?: string
+  price?: number
   image: string
-  rating: number
+  rating?: number
 }
 
-export function Card({ item }: { item: CardProps}) {
+export function Card({ item }: { item: CardProps }) {
   return (
-    <Pressable style={styles.ContentItems}>
+    <ThemedPressable style={ styles.ContentItems }>
       <Image source={{ uri: item.image }} style={{ width: '100%', height: 100, borderTopLeftRadius: 8, borderTopRightRadius: 8 }} />
-      <ThemedView style={styles.descriptionItem}>
+      <View style={styles.descriptionItem}>
         <ThemedText style={{ fontWeight: '500' }} numberOfLines={1} ellipsizeMode="tail">{item.name}</ThemedText>
-        <ThemedView style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
-          <ThemedText>R${(item.price / 100).toFixed(2)}</ThemedText>
-          <ThemedText>{item.rating} ⭐</ThemedText>
-        </ThemedView>
-      </ThemedView>
-    </Pressable>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
+          <ThemedText>{item.price ? 'R$' + (item.price / 100).toFixed(2) : ''}</ThemedText>
+          <ThemedText>{item.rating ? `${item.rating} ⭐` : ''}</ThemedText>
+        </View>
+      </View>
+    </ThemedPressable>
   )
 }
 
 const styles = StyleSheet.create({
   ContentItems: {
+    flex: 1,
+    minWidth: 150,
     margin: 4,
-    width: 175,
+    padding: 2,
     borderWidth: 1,
-    borderColor: '#ccc',
     borderRadius: 8,
-    padding: 4,
   },
 
   descriptionItem: {
     flex: 1,
-    marginTop: 8,
+    marginTop: 4,
   }
 })

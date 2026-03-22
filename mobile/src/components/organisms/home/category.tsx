@@ -5,7 +5,7 @@ import { ThemedPressable } from '@/components/themed-pressable'
 interface CategoriesProps {
   id: number
   category: string
-  emoji: string 
+  icon: string
 }
 
 export function CategoryCard ({ item, handleFilter }: { item: CategoriesProps; handleFilter: (query: string) => void }) {
@@ -13,18 +13,18 @@ export function CategoryCard ({ item, handleFilter }: { item: CategoriesProps; h
     <ThemedPressable
       style={styles.ContentCategories}
       onPress={() => handleFilter(item.category)}>
-      <ThemedText>{item.category}</ThemedText>
-      <ThemedText style={styles.Emoji}>{item.emoji}</ThemedText>
+      <ThemedText >{item.category}</ThemedText>
+      <ThemedText style={styles.Emoji}>{item.icon}</ThemedText>
     </ThemedPressable>
   )
 }
 
 const styles = StyleSheet.create({
   ContentCategories: {
-    backgroundColor: '#f9f9f9',
-    width: 100,
+    width: 110,
     aspectRatio: 3/2,
     borderRadius: 8,
+    borderWidth: 1,
     margin: 8,
     padding: 8,
     alignItems: 'center',

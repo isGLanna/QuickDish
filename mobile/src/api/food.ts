@@ -1,11 +1,11 @@
 export const categories = [
-  { id: 1, category: 'Pizza', emoji: '🍕' },
-  { id: 2, category: 'Hambúrguer', emoji: '🍔' },
-  { id: 3, category: 'Marmita', emoji: '🍱' },
-  { id: 4, category: 'Sushi', emoji: '🍣' },
-  { id: 5, category: 'Caldo', emoji: '🍲' },
-  { id: 6, category: 'Bebida', emoji: '🥤' },
-  { id: 7, category: 'Gelados', emoji: '🍨' },
+  { id: 1, category: 'Pizza', icon: '🍕' },
+  { id: 2, category: 'Hambúrguer', icon: '🍔' },
+  { id: 3, category: 'Marmita', icon: '🍱' },
+  { id: 4, category: 'Sushi', icon: '🍣' },
+  { id: 5, category: 'Caldo', icon: '🍲' },
+  { id: 6, category: 'Bebida', icon: '🥤' },
+  { id: 7, category: 'Gelados', icon: '🍨' },
 ]
 
 export const popularItems = [
@@ -17,6 +17,16 @@ export const popularItems = [
   { id: 6, name: 'Açaí na Tigela', price: 1999, category: 'Gelados', image: 'https://images.unsplash.com/photo-1590080874088-eec64895b423', rating: 4.7 },
   { id: 7, name: 'Bolo de Chocolate', price: 2499, category: 'Gelados', image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c', rating: 4.6 },
   { id: 8, name: 'Pizza Pepperoni', price: 3199, category: 'Pizza', image: 'https://images.unsplash.com/photo-1594007654729-407eedc4be65', rating: 4.4 },
+]
+
+export const restaurants = [
+  { id: 1, name: "McDonald's", image: "https://logo-teka.com/wp-content/uploads/2025/06/mcdonalds-sign-logo.png" },
+  { id: 2, name: "Pizza Hut", image: "https://www.pngkey.com/png/detail/123-1230034_pizza-hut-logo-transparent.png" },
+  { id: 3, name: "Subway", image: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Subway_2016_logo.svg" },
+  { id: 4, name: "Starbucks", image: "https://logospng.org/download/starbucks/logo-starbucks-512.png" },
+  { id: 5, name: "Burger King", image: "https://logospng.org/download/burger-king/logo-burger-king-512.png" },
+  { id: 6, name: "KFC", image: "https://upload.wikimedia.org/wikipedia/commons/b/bf/KFC_logo.svg" },
+  { id: 7, name: "Domino's Pizza", image: "https://upload.wikimedia.org/wikipedia/commons/7/74/Dominos_pizza_logo.svg" }
 ]
 
 export const recommendedItems = [

@@ -11,7 +11,7 @@ export function ThemedPressable({ style, lightColor, darkColor, ...otherProps }:
   const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'container')
   const border = useThemeColor({ light: lightColor, dark: darkColor }, 'border')
 
-  return <Pressable style={(state) => [{ backgroundColor, border },
+  return <Pressable style={(state) => [{ backgroundColor, borderColor: border },
     typeof style === 'function' ? style(state) : style]}
     {...otherProps} />
 }
