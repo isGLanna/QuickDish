@@ -1,16 +1,17 @@
 import { useState } from 'react'
-import { View, Text, Button, StyleSheet, Image } from 'react-native'
+import { StyleSheet, Image } from 'react-native'
+import { ThemedView } from '@/components/themed-view'
+import { ThemedText } from '@/components/themed-text'
 
 export default function Profile() {
   const [user, setUser] = useState<{ name: string, surname: string, age: number, photo: string}> ({ name: 'Giordano', surname: 'Lanna', age: 22, photo: "https://avatars.githubusercontent.com/u/167474669?v=4"})
 
   return (
-    <View style={styles.container}>
+    <ThemedView style={styles.container}>
       <Image source={{ uri: user.photo }} style={styles.avatar} />
-      <Text style={styles.p}>User: {user.name} {user.surname}</Text>
-      <Text style={styles.p}>Age: {user.age}</Text>
-      <Text>TESTANDO</Text>
-    </View>
+      <ThemedText style={styles.p}>User: {user.name} {user.surname}</ThemedText>
+      <ThemedText style={styles.p}>Age: {user.age}</ThemedText>
+    </ThemedView>
   )
 }
 
@@ -19,7 +20,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    
     gap: 20,
   },
   avatar: {

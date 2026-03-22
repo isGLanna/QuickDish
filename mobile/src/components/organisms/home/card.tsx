@@ -1,4 +1,7 @@
-import { Image, Pressable, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Pressable, View } from 'react-native'
+import { ThemedView } from '@/components/themed-view'
+import { ThemedText } from '@/components/themed-text'
+
 import { StyleSheet } from 'react-native'
 
 interface CardProps {
@@ -13,13 +16,13 @@ export function Card({ item }: { item: CardProps}) {
   return (
     <Pressable style={styles.ContentItems}>
       <Image source={{ uri: item.image }} style={{ width: '100%', height: 100, borderTopLeftRadius: 8, borderTopRightRadius: 8 }} />
-      <View style={styles.descriptionItem}>
-        <Text style={{ fontWeight: '500' }} numberOfLines={1} ellipsizeMode="tail">{item.name}</Text>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
-          <Text>R${(item.price / 100).toFixed(2)}</Text>
-          <Text>{item.rating} ⭐</Text>
-        </View>
-      </View>
+      <ThemedView style={styles.descriptionItem}>
+        <ThemedText style={{ fontWeight: '500' }} numberOfLines={1} ellipsizeMode="tail">{item.name}</ThemedText>
+        <ThemedView style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
+          <ThemedText>R${(item.price / 100).toFixed(2)}</ThemedText>
+          <ThemedText>{item.rating} ⭐</ThemedText>
+        </ThemedView>
+      </ThemedView>
     </Pressable>
   )
 }

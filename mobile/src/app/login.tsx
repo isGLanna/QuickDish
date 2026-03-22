@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 
+import { ThemedView } from '@/components/themed-view'
+import { ThemedText } from '@/components/themed-text'
+
 export default function Login() {
   const [ userData, setUserData ] = useState<{ email: string, password: string}>({ email: '', password: ''})
 
@@ -21,8 +24,8 @@ export default function Login() {
     }
   }
   return(
-    <View>
-      <Text>Bem-vindo!</Text>
+    <ThemedView>
+      <ThemedText>Bem-vindo!</ThemedText>
       <TextInput 
         placeholder='E-mail'
         value={userData.email} 
@@ -36,8 +39,8 @@ export default function Login() {
         secureTextEntry
         />
       <TouchableOpacity onPress={handleSubmit}>
-        <Text>Entrar</Text>
+        <ThemedText>Entrar</ThemedText>
       </TouchableOpacity>
-    </View>
+    </ThemedView>
   )
 }
