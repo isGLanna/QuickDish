@@ -7,5 +7,5 @@ type Client struct {
 	Email     string    `gorm:"not null; varchar(100); unique" json:"email"`
 	Password  string    `gorm:"not null; varchar(255)" json:"password"`
 	Telephone string    `gorm:"not null; varchar(15)" json:"telephone"`
-	Addresses []Address `gorm:"foreignKey:ClientId" json:"adresses"`
+	Address   []Address `gorm:"foreignKey:ClientId" json:"address"`
 }

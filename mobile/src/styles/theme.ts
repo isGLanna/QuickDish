@@ -26,7 +26,7 @@ export const Colors = {
     icon: '#9BA1A6',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
-    container: 'hsl(22, 10%, 25%)',
+    container: '#463e39',
     border: '#eba947',
   },
 };

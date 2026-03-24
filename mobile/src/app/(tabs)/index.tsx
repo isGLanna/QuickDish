@@ -9,6 +9,7 @@ import { CategoryCard, Card } from '@/components/organisms/home/index'
 import { categories, popularItems, restaurants, recommendedItems } from '@/api/food'
 import { useState, useCallback, useMemo } from 'react'
 import { useThemeColor } from '@/hooks/use-theme-color';
+import { ThemedView } from '@/components/themed-view'
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string>('')
@@ -63,9 +64,12 @@ export default function Home() {
       </View>
 
       <View style={styles.section}>
-        <ThemedText style={styles.title} darkColor='#222'>
-          Mais populares
-        </ThemedText>
+        <ThemedView style={styles.title}>
+          <ThemedText>
+            Mais populares
+          </ThemedText>
+        </ThemedView>
+
         <ThemedFlatList
           horizontal
           style={styles.gridItems}
@@ -77,9 +81,11 @@ export default function Home() {
       </View>
 
       <View style={styles.section}>
-        <ThemedText style={styles.title} darkColor='#222'>
-          Restaurantes
-        </ThemedText>
+        <ThemedView style={styles.title}>
+          <ThemedText>
+            Restaurantes
+          </ThemedText>
+        </ThemedView>
         <ThemedFlatList
           horizontal
           style={styles.gridItems}
@@ -90,9 +96,11 @@ export default function Home() {
         />
       </View>
 
-      <ThemedText style={styles.title} darkColor='#222'>
-        Sugestoes de pedidos
-      </ThemedText>
+      <ThemedView style={styles.title}>
+        <ThemedText>
+          Sugestoes de pedidos
+        </ThemedText>
+      </ThemedView>
     </View>
   )
 
@@ -160,18 +168,16 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    backgroundColor: '#f9f9f9',
-    fontSize: 16,
     alignSelf: 'flex-start',
     fontWeight: '400',
     paddingVertical: 4,
     paddingHorizontal: 16,
     marginBottom: 4,
     borderRadius: 100,
+    borderWidth: 1,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 2,
   },
 })
