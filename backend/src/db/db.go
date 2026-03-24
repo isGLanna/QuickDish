@@ -42,6 +42,7 @@ func initDB() {
 		&models.Address{},
 		&models.Client{},
 		&models.Enterprise{},
+		&models.EventTracking{},
 		&models.Food{},
 		&models.Order{},
 	); err != nil {
@@ -49,6 +50,10 @@ func initDB() {
 	}
 
 	db := connection
+
+	if db != nil {
+		log.Fatal("Função provisória enquanto não se usa db em algum lugar")
+	}
 }
 
 func getEnv(key, fallback string) string {
