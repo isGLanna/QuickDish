@@ -22,37 +22,31 @@ export default function Profile() {
         <ListItem style={styles.li}>Meus pedidos</ListItem>
         <ListItem style={styles.li}>Favoritos</ListItem>
         <ListItem style={styles.li}>Configurações</ListItem>
-        <ListItem style={[styles.li, { borderColor: '#ff4444' }]}>Sair</ListItem>
+        <ListItem style={styles.li}>Sair</ListItem>
       </ThemedView>
 
     </ThemedView>
   )
 }
 
+
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    alignItems: 'center',
-    paddingVertical: 20,
-    paddingHorizontal: 8,
-  },
   container: {
     flex: 1,
-    width: '100%',
-    padding: 2,
-    margin: 32,
+    padding: 4,
+    margin: 8,
     borderRadius: 8,
     flexDirection: 'column',
   },
 
   header: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'start',
+    justifyContent: 'start',
     gap: 16,
   },
 
   description: {
-    flex: 1,
     height: 100,
     justifyContent: 'center',
   },
@@ -63,6 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignSelf: 'center',
   },
+
   ul: {
     flex: 1,
     marginTop: 16,
@@ -71,8 +66,8 @@ const styles = StyleSheet.create({
   },
 
   li: {
-    paddingBlock: 8,
-    marginInline: 16,
+    paddingBlock: 16,
+    marginInline: 8,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,

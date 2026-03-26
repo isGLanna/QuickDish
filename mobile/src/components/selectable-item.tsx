@@ -9,10 +9,10 @@ export type ThemedPressableProps = PressableProps & {
 }
 
 export function SelectableItem({ style, lightColor, darkColor, ...otherProps }: ThemedPressableProps) {
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background')
+  const container = useThemeColor({ light: lightColor, dark: darkColor }, 'container')
   const borderColor = useThemeColor({ light: lightColor, dark: darkColor }, 'border')
 
-  return <Pressable style={(state) => [{ backgroundColor: backgroundColor, borderColor: borderColor, borderWidth: 5},
+  return <Pressable style={(state) => [{ backgroundColor: container, borderColor: borderColor, borderWidth: 5},
     typeof style === 'function' ? style(state) : style]}
     {...otherProps} />
 }

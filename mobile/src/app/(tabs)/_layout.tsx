@@ -19,9 +19,10 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[color].tint,
+        tabBarInactiveTintColor: Colors[color].tabIconDefault,
         headerShown: false,
         tabBarButton: HapticTab,
-        tabBarStyle: styles.tabBar,
+        tabBarStyle: [styles.tabBar],
       }}
     >
       <Tabs.Screen
@@ -30,6 +31,7 @@ export default function TabLayout() {
           tabBarShowLabel: false,
           tabBarIcon: ({ focused, color }) => (
             <View style={[buttonStyle, { flexDirection: direction }]}>
+              {focused && <View style={styles.selected} />}
               <IconSymbol size={24} name="house.fill" color={color} />
 
               {!isMobile && (
@@ -37,8 +39,6 @@ export default function TabLayout() {
                   Início
                 </Text>
               )}
-
-              {focused && <View style={styles.selected} />}
             </View>
           ),
         }}
@@ -50,6 +50,7 @@ export default function TabLayout() {
           tabBarShowLabel: false,
           tabBarIcon: ({ focused, color }) => (
             <View style={[buttonStyle, { flexDirection: direction }]}>
+              {focused && <View style={styles.selected} />}
               <IconSymbol size={24} name="person.fill" color={color} />
 
               {!isMobile && (
@@ -57,8 +58,6 @@ export default function TabLayout() {
                   Perfil
                 </Text>
               )}
-
-              {focused && <View style={styles.selected} />}
             </View>
           ),
         }}
@@ -72,14 +71,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#2e1d0abe',
     height: 50,
-    maxWidth: 720,
+    maxWidth: 700,
+    marginInline: 'auto',
     marginBottom: 10,
     borderRadius: 100,
     borderWidth: 1,
     borderColor: '#eba947',
     alignSelf: 'center',
-    marginInline: 'auto',
     shadowColor: 'transparent',
+    elevation: 0,
   },
 
   button: {
@@ -87,17 +87,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBlock: 'auto',
     borderRadius: 50,
     overflow: 'hidden',
   },
 
   buttonMobile: {
-    flex: 1,
-    padding: 10,
+    marginTop: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBlock: 'auto',
     borderRadius: 50,
     overflow: 'hidden',
   },
@@ -109,6 +106,7 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     borderRadius: 50,
-    backgroundColor: '#ffffff20',
+    backgroundColor: '#ffffff30',
+    zIndex: -1,
   },
 })

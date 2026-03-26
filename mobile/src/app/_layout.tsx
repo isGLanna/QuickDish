@@ -3,18 +3,18 @@ import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import 'react-native-reanimated'
-import { useContext } from 'react'
 
 import { Colors } from '@/styles/theme'
+import { AppThemeProvider, useAppTheme } from '@/contexts/theme-color'
 
 export const unstable_settings = {
   anchor: 'home',
 };
 
 function RootNavigationLayout() {
-  const { color: theme } = useContext(ThemeContext).color
+  const { color: theme } = useAppTheme()
 
-  const navigationTheme = theme === 'light'
+  const navigationTheme = theme === 'dark'
     ? {
         ...DarkTheme,
         colors: {
@@ -37,12 +37,20 @@ function RootNavigationLayout() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: appBackground }} edges={['top', 'bottom']}>
       <ThemeProvider value={navigationTheme}>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-          </Stack>
-          <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+        </Stack>
+        <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
       </ThemeProvider>
     </SafeAreaView>
+  )
+}
+
+export default function RootLayout() {
+  return (
+    <AppThemeProvider>
+      <RootNavigationLayout />
+    </AppThemeProvider>
   )
 }

@@ -1,4 +1,5 @@
 import { Pressable, type PressableProps } from 'react-native'
+import { ThemedText } from '@comp/themed-text'
 
 import { useThemeColor } from '@/hooks/use-theme-color';
 
@@ -12,5 +13,7 @@ export function ListItem({ style, lightColor, darkColor, ...otherProps }: Themed
 
   return <Pressable style={(state) => [{ borderColor: border },
     typeof style === 'function' ? style(state) : style]}
-    {...otherProps} />
+    {...otherProps}> 
+      <ThemedText> {otherProps.children} </ThemedText>
+    </Pressable>
 }

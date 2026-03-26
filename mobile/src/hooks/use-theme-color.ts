@@ -8,7 +8,7 @@ import { useAppTheme } from '@/contexts/theme-color'
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
-    colorName: string
+  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
 ) {
   const { color: theme } = useAppTheme()
   const colorFromProps = props[theme]
