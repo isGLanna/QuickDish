@@ -1,6 +1,7 @@
 package main
 
 import (
+	"backend/src/db"
 	"backend/src/middlewares"
 	"backend/src/routes"
 
@@ -9,9 +10,11 @@ import (
 
 func main() {
 	//db.InitDatabase()
+	conn := db.InitRedis()
 	r := gin.Default()
 
 	r.Use(middlewares.ConfigCors("*"))
+	r.Use(middlewares.RateLimiter(conn))
 
 	routes.RegisterRoutes(r)
 
