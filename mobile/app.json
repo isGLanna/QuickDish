@@ -12,6 +12,9 @@
       "supportsTablet": true
     },
     "android": {
+      "name": "QuickDish",
+      "slug": "quickdish",
+      "package": "com.quickdish.app",
       "adaptiveIcon": {
         "backgroundColor": "#C9A15B",
         "foregroundImage": "./src/assets/images/android-icon-foreground.png",

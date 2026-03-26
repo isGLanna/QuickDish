@@ -41,7 +41,9 @@ func (s *FoodService) GetPopularFoods() ([]models.Food, error) {
 		FROM food f
 			JOIN review r ON r.food_id = f.id
 		GROUP BY f.id
-		ORDER BY f.id DESC
+		HAVING AVG(r.rating) > 3.5
+		ORDER BY RANDOM()
+		LIMIT 10
 		`).Scan(&foods).Error; err != nil {
 		return nil, fmt.Errorf("Failed to get popular foods: %w", err)
 	}

@@ -1,6 +1,6 @@
 import { Image, View } from 'react-native'
-import { ThemedText } from '@/components/themed-text'
-import { ThemedPressable } from '@/components/themed-pressable'
+import { ThemedText } from '@comp/themed-text'
+import { SelectableItem } from '@comp/selectable-item'
 
 import { StyleSheet } from 'react-native'
 
@@ -14,7 +14,7 @@ interface CardProps {
 
 export function Card({ item }: { item: CardProps }) {
   return (
-    <ThemedPressable style={ styles.ContentItems }>
+    <SelectableItem style={ styles.ContentItems }>
       <Image source={{ uri: item.image }} style={{ width: '100%', height: 100, borderTopLeftRadius: 8, borderTopRightRadius: 8 }} />
       <View style={styles.descriptionItem}>
         <ThemedText style={{ fontWeight: '500' }} numberOfLines={1} ellipsizeMode="tail">{item.name}</ThemedText>
@@ -23,7 +23,7 @@ export function Card({ item }: { item: CardProps }) {
           <ThemedText>{item.rating ? `${item.rating} ⭐` : ''}</ThemedText>
         </View>
       </View>
-    </ThemedPressable>
+    </SelectableItem>
   )
 }
 
