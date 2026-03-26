@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
-
-import { ThemedView } from '@/components/themed-background'
+import { ThemedView } from '@/components/themed-view'
 import { ThemedText } from '@/components/themed-text'
 
 export default function Login() {

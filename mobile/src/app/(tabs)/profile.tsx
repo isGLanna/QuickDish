@@ -2,30 +2,30 @@ import { useState } from 'react'
 import { StyleSheet, Image } from 'react-native'
 import { ThemedView } from '@comp/themed-view'
 import { ThemedText } from '@comp/themed-text'
-import { ListItem } from '@comp/list-Item'
+import { ListItem } from '@comp/list-item'
 
 export default function Profile() {
   const [user, setUser] = useState<{ name: string, surname: string, type: string, photo: string}> ({ name: 'Giordano', surname: 'Lanna', type: 'Cliente', photo: "https://avatars.githubusercontent.com/u/167474669?v=4"})
 
   return (
-      <ThemedView style={styles.container}>
+    <ThemedView style={styles.container}>
 
-        <ThemedView style={styles.header}>
-          <Image source={{ uri: user.photo }} style={styles.avatar} />
-          <ThemedView style={styles.description}>
-            <ThemedText type='defaultSemiBold'>{user.name} {user.surname}</ThemedText>
-            <ThemedText>Tipo: {user.type}</ThemedText>
-          </ThemedView>
+      <ThemedView style={styles.header}>
+        <Image source={{ uri: user.photo }} style={styles.avatar} />
+        <ThemedView style={styles.description}>
+          <ThemedText type='defaultSemiBold'>{user.name} {user.surname}</ThemedText>
+          <ThemedText>Tipo: {user.type}</ThemedText>
         </ThemedView>
-        
-        <ThemedView style={styles.ul}>
-          <ListItem style={styles.li}>Meus pedidos</ListItem>
-          <ListItem style={styles.li}>Favoritos</ListItem>
-          <ListItem style={styles.li}>Configurações</ListItem>
-          <ListItem style={[styles.li, { borderColor: '#ff4444' }]}>Sair</ListItem>
-        </ThemedView>
-
       </ThemedView>
+      
+      <ThemedView style={styles.ul}>
+        <ListItem style={styles.li}>Meus pedidos</ListItem>
+        <ListItem style={styles.li}>Favoritos</ListItem>
+        <ListItem style={styles.li}>Configurações</ListItem>
+        <ListItem style={[styles.li, { borderColor: '#ff4444' }]}>Sair</ListItem>
+      </ThemedView>
+
+    </ThemedView>
   )
 }
 
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     padding: 2,
+    margin: 32,
     borderRadius: 8,
     flexDirection: 'column',
   },

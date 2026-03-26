@@ -1,6 +1,5 @@
 import { View, FlatList, StyleSheet, Dimensions } from 'react-native'
 
-import { ThemedBackground } from '@/components/themed-background'
 import { ThemedText } from '@/components/themed-text'
 import { ThemedFlatList } from '@/components/themed-flatlist'
 
@@ -105,7 +104,7 @@ export default function Home() {
   )
 
   return (
-    <ThemedBackground style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={filteredRecommendedItems}
         keyExtractor={item => item.id.toString()}
@@ -135,7 +134,7 @@ export default function Home() {
         columnWrapperStyle={styles.recommendedGridRow}
         contentContainerStyle={{ paddingBottom: 32 }}
       />
-    </ThemedBackground>
+    </View>
   )
 }
 

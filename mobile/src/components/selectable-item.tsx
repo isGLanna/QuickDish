@@ -1,6 +1,7 @@
 import { Pressable, type PressableProps } from 'react-native'
 
 import { useThemeColor } from '@/hooks/use-theme-color';
+import { useAppTheme } from '@/contexts/theme-color';
 
 export type ThemedPressableProps = PressableProps & {
   lightColor?: string
@@ -8,10 +9,10 @@ export type ThemedPressableProps = PressableProps & {
 }
 
 export function SelectableItem({ style, lightColor, darkColor, ...otherProps }: ThemedPressableProps) {
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'container')
-  const border = useThemeColor({ light: lightColor, dark: darkColor }, 'border')
+  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background')
+  const borderColor = useThemeColor({ light: lightColor, dark: darkColor }, 'border')
 
-  return <Pressable style={(state) => [{ backgroundColor, borderColor: border },
+  return <Pressable style={(state) => [{ backgroundColor: backgroundColor, borderColor: borderColor, borderWidth: 5},
     typeof style === 'function' ? style(state) : style]}
     {...otherProps} />
 }

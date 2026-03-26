@@ -4,11 +4,11 @@ import React from 'react'
 import { HapticTab } from '@/components/haptic-tab'
 import { IconSymbol } from '@/components/ui/icon-symbol'
 import { Colors } from '@/styles/theme'
-import { useColorScheme } from '@/hooks/use-color-scheme'
+import { useAppTheme } from '@/contexts/theme-color'
 import { StyleSheet, useWindowDimensions, View, Text } from 'react-native'
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme()
+  const { color } = useAppTheme()
   const { width } = useWindowDimensions()
 
   const isMobile = width < 720
@@ -18,7 +18,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors[color].tint,
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarStyle: styles.tabBar,
@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
     borderColor: '#eba947',
     alignSelf: 'center',
     marginInline: 'auto',
-    elevation: 0,
     shadowColor: 'transparent',
   },
 
