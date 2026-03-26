@@ -11,3 +11,8 @@ type RegisterService struct {
 func NewRegisterService() *RegisterService {
 	return &RegisterService{db: &gorm.DB{}}
 }
+
+type AuthValidator interface {
+	ValidateRegister() error
+	ValidateLogin() error
+}

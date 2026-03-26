@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"backend/src/services"
+	"backend/src/validators"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,7 +16,14 @@ func NewRegisterController() *RegisterController {
 }
 
 func (c *RegisterController) RegisterUser(ctx *gin.Context) {
-	// Implementar lógica de registro de usuário
+	userData := struct {
+		validators.RegisterUserSchema
+	}{}
+
+	if err := ctx.ShouldBindJSON(&userData); err != nil {
+		ctx.JSON(400, gin.H{"Error": err.Error()})
+		return
+	}
 }
 
 func (c *RegisterController) RegisterRestaurant(ctx *gin.Context) {

@@ -40,7 +40,7 @@ func initDB() {
 
 	if err := connection.AutoMigrate(
 		&models.Address{},
-		&models.Client{},
+		&models.User{},
 		&models.Enterprise{},
 		&models.EventTracking{},
 		&models.Food{},
