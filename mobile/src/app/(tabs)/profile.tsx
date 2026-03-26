@@ -1,14 +1,23 @@
-import { useState } from 'react'
-import { StyleSheet, Image } from 'react-native'
+import { use, useState } from 'react'
+import { StyleSheet, Image, View } from 'react-native'
 import { ThemedView } from '@comp/themed-view'
 import { ThemedText } from '@comp/themed-text'
 import { ListItem } from '@comp/list-item'
+import { useContext } from 'react'
+import { ThemeContext } from '@/contexts/theme-color'
 
 export default function Profile() {
-  const [user, setUser] = useState<{ name: string, surname: string, type: string, photo: string}> ({ name: 'Giordano', surname: 'Lanna', type: 'Cliente', photo: "https://avatars.githubusercontent.com/u/167474669?v=4"})
+  const [user] = useState<{ name: string, surname: string, type: string, photo: string}> ({ name: 'Giordano', surname: 'Lanna', type: 'Cliente', photo: "https://avatars.githubusercontent.com/u/167474669?v=4"})
+
+  const currentTheme = useContext(ThemeContext)
+
+  const toggleTheme = () => {
+    const newTheme = currentTheme.color === 'light' ? 'dark' : 'light'
+    currentTheme.setColor(newTheme)
+  }
 
   return (
-    <ThemedView style={styles.container}>
+    <View style={styles.container}>
 
       <ThemedView style={styles.header}>
         <Image source={{ uri: user.photo }} style={styles.avatar} />
@@ -22,10 +31,11 @@ export default function Profile() {
         <ListItem style={styles.li}>Meus pedidos</ListItem>
         <ListItem style={styles.li}>Favoritos</ListItem>
         <ListItem style={styles.li}>Configurações</ListItem>
+        <ListItem style={styles.li} onPress={toggleTheme}>Tema de cor</ListItem>
         <ListItem style={styles.li}>Sair</ListItem>
       </ThemedView>
 
-    </ThemedView>
+    </View>
   )
 }
 
@@ -41,9 +51,11 @@ const styles = StyleSheet.create({
 
   header: {
     flexDirection: 'row',
-    alignItems: 'start',
-    justifyContent: 'start',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
     gap: 16,
+    borderBottomWidth: 1,
+    paddingBlock: 8,
   },
 
   description: {

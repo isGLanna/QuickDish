@@ -8,6 +8,7 @@ import (
 
 func RegisterRoutes(r *gin.Engine) {
 	HealthRoutes(r)
+	RegisterUser(r)
 
 	r.NoRoute(func(c *gin.Context) {
 		// Implementar um redirect para página de erro 404 quando implementado
