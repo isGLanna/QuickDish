@@ -27,7 +27,7 @@ func RolePermission(requiredRole string) gin.HandlerFunc {
 		}
 
 		c.Set("id", claims.Id)
-		c.Set("enterprise_id", claims.EnterpriseId)
+		c.Set("company_id", claims.EnterpriseId)
 		c.Set("role", claims.Role)
 
 		c.Next()

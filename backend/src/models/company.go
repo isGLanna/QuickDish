@@ -1,6 +1,6 @@
 package models
 
-type Enterprise struct {
+type Company struct {
 	Id       uint      `gorm:"primaryKey autoIncrement" json:"id"`
 	Name     string    `gorm:"not null; size:30" json:"name"`
 	Email    string    `gorm:"not null; size: 50; unique" json:"email"`
