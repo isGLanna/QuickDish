@@ -9,7 +9,7 @@ func Auth() gin.HandlerFunc {
 		token := c.GetHeader("Authorization")
 
 		if token == "" {
-			c.AbortWithStatusJSON(401, gin.H{"error": "Token de autenticação ausente"})
+			c.AbortWithStatusJSON(401, gin.H{"error": "Usuário não autenticado"})
 			return
 		}
 

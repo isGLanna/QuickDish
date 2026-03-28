@@ -1,6 +1,7 @@
 package middlewares
 
 import (
+	"backend/src/providers"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -9,14 +10,25 @@ import (
 // Verificar se o jwt contém a função do usuário e se ela é igual à função exigida
 func RolePermission(requiredRole string) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		role, exists := c.Get("role")
+		jwt := providers.NewJWTProvider()
 
-		if !exists || role != requiredRole {
+		tokenString := c.GetHeader("Authorization")[len("Bearer "):]
+
+		claims, err := jwt.Verify(tokenString)
+
+		if err != nil {
+			c.AbortWithStatusJSON(http.StatusMethodNotAllowed, gin.H{"error": "Acesso negado"})
+			return
+		}
+
+		if claims.Role != requiredRole && claims.Role != "*" {
 			c.AbortWithStatusJSON(http.StatusForbidden, gin.H{"error": "Usuário sem permissão."})
 			return
 		}
 
-		userId, _ := c.Get("userId")
+		c.Set("id", claims.Id)
+		c.Set("enterprise_id", claims.EnterpriseId)
+		c.Set("role", claims.Role)
 
 		c.Next()
 	}

@@ -15,6 +15,7 @@ func main() {
 
 	r.Use(middlewares.ConfigCors("*"))
 	r.Use(middlewares.RateLimiter(conn))
+	r.Use(middlewares.Auth())
 
 	routes.RegisterRoutes(r)
 

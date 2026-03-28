@@ -25,3 +25,15 @@ func (s FoodController) GetFoodSuggestions(c *gin.Context) {
 func (s FoodController) GetFoodsByEnterprise(c *gin.Context) {
 
 }
+
+func (s FoodController) CreateFood(c *gin.Context) {
+
+}
+
+func (s FoodController) UpdateFood(c *gin.Context) {
+
+}
+
+func (s FoodController) DeleteFood(c *gin.Context) {
+
+}

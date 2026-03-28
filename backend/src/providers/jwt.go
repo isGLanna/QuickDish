@@ -9,7 +9,7 @@ import (
 )
 
 // EnterpriseId deve ser incluído no payload de empresas
-type payload struct {
+type Payload struct {
 	Id           uint
 	EnterpriseId uint
 	Role         string `gorm:"type:enum('admin', 'restaurant', 'delivery_person')"`
@@ -25,7 +25,7 @@ func NewJWTProvider() *JWTProvider {
 	}
 }
 
-func (p *JWTProvider) Sign(payload payload) (string, error) {
+func (p *JWTProvider) Sign(payload Payload) (string, error) {
 	claims := jwt.MapClaims{
 		"sub":           payload.Id,
 		"enterprise_id": payload.EnterpriseId,
@@ -39,27 +39,21 @@ func (p *JWTProvider) Sign(payload payload) (string, error) {
 	return token.SignedString([]byte(p.secretKey))
 }
 
-func (p *JWTProvider) Verify(tokenString string) (*payload, error) {
+func (p *JWTProvider) Verify(tokenString string) (*Payload, error) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (any, error) {
 		return []byte(p.secretKey), nil
 	})
 
-	switch {
-	case token.Valid:
-		claims := token.Claims.(jwt.MapClaims)
-		return &payload{
-			Id:           uint(claims["sub"].(int64)),
-			EnterpriseId: uint(claims["enterprise_id"].(int64)),
-			Role:         claims["roles"].(string),
-		}, nil
-
-	case errors.Is(err, jwt.ErrTokenExpired) || errors.Is(err, jwt.ErrTokenNotValidYet):
-		return nil, err
-
-	case errors.Is(err, jwt.ErrTokenSignatureInvalid):
-		return nil, err
-
-	default:
-		return nil, err
+	if err != nil {
+		return nil, errors.New("Acesso negado")
 	}
+
+	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+		return &Payload{
+			Id:           uint(claims["sub"].(float64)),
+			EnterpriseId: uint(claims["enterprise_id"].(float64)),
+			Role:         claims["role"].(string),
+		}, nil
+	}
+	return nil, errors.New("Acesso negado")
 }

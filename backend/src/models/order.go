@@ -18,3 +18,5 @@ type Order struct {
 /* Adendos:
 - Mesmo que o usuário utilize o endereço padrão, deve ser criado um novo endereço para cada pedido, pois o cliente pode querer alterar o endereço padrão durante uma entrega
 */
+
+// TODO: armazenar status do pedido, como entregue ou não e descrição do pedido por parte do cliente, entregador e restaurante
