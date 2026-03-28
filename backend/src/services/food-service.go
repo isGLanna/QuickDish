@@ -12,8 +12,8 @@ type FoodService struct {
 	db *gorm.DB
 }
 
-func NewFoodService(db *gorm.DB) *FoodService {
-	return &FoodService{db: db}
+func NewFoodService() *FoodService {
+	return &FoodService{db: &gorm.DB{}}
 }
 
 func (s *FoodService) CreateFood(name string, price int, enterpriseId uint) error {
