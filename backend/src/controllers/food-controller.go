@@ -14,6 +14,14 @@ func NewFoodController() *FoodController {
 	return &FoodController{service: services.NewFoodService()}
 }
 
-func (s FoodController) GetFoodSuggestions(c gin.Context) {
+func (s FoodController) GetPopularFoods(c *gin.Context) {
+
+}
+
+func (s FoodController) GetFoodSuggestions(c *gin.Context) {
+
+}
+
+func (s FoodController) GetFoodsByEnterprise(c *gin.Context) {
 
 }

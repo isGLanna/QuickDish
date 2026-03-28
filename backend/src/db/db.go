@@ -4,7 +4,8 @@ import (
 	"backend/src/models"
 	"fmt"
 	"log"
-	"os"
+
+	"backend/src/utils"
 
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
@@ -21,11 +22,11 @@ func initDB() {
 
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s db_name=%s port=%s sslmode=disable",
-		getEnv("DB_HOST", "localhost"),
-		getEnv("DB_USER", "postgres"),
-		getEnv("DB_PASSWORD", ""),
-		getEnv("DB_NAME", ""),
-		getEnv("DB_PORT", "5432"),
+		utils.GetEnv("DB_HOST", "localhost"),
+		utils.GetEnv("DB_USER", "postgres"),
+		utils.GetEnv("DB_PASSWORD", ""),
+		utils.GetEnv("DB_NAME", ""),
+		utils.GetEnv("DB_PORT", "5432"),
 	)
 
 	connection, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
@@ -54,11 +55,4 @@ func initDB() {
 	if db != nil {
 		log.Fatal("Função provisória enquanto não se usa db em algum lugar")
 	}
-}
-
-func getEnv(key, fallback string) string {
-	if value, ok := os.LookupEnv(key); ok {
-		return value
-	}
-	return fallback
 }
