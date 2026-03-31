@@ -21,22 +21,6 @@ export default function Home() {
     [filters],
   )
 
-  const lastRowIndex = useMemo(
-    () => Math.max(Math.ceil(filteredRecommendedItems.length / columns) - 1, 0),
-    [filteredRecommendedItems.length, columns],
-  )
-
-  const firstRowLastItemIndex = useMemo(
-    () => Math.min(columns, filteredRecommendedItems.length) - 1,
-    [columns, filteredRecommendedItems.length],
-  )
-
-  const lastItemIndex = filteredRecommendedItems.length - 1
-  const lastRowFirstItemIndex = useMemo(
-    () => (filteredRecommendedItems.length === 0 ? -1 : lastRowIndex * columns),
-    [filteredRecommendedItems.length, lastRowIndex, columns],
-  )
-
   // TODO: substituir por consulta ao backend.
   const handleFilterItems = useCallback((query: string) => {
     setFilters(prev => {
@@ -109,30 +93,11 @@ export default function Home() {
         data={filteredRecommendedItems}
         keyExtractor={item => item.id.toString()}
         numColumns={columns}
-        renderItem={({ item, index }) => {
-          const isTopLeft = index === 0
-          const isTopRight = index === firstRowLastItemIndex
-          const isBottomLeft = index === lastRowFirstItemIndex
-          const isBottomRight = index === lastItemIndex
-
-          return (
-            <View
-              style={[
-                [styles.gridCell, { backgroundColor: container }],
-                isTopLeft && styles.topLeftCorner,
-                isTopRight && styles.topRightCorner,
-                isBottomLeft && styles.bottomLeftCorner,
-                isBottomRight && styles.bottomRightCorner,
-              ]}
-            >
-              <Card item={item} />
-            </View>
-          )
-        }}
+        renderItem={({ item }) =>  <Card item={item} /> }
         ListHeaderComponent={renderHeader}
         showsVerticalScrollIndicator={false}
         columnWrapperStyle={styles.recommendedGridRow}
-        contentContainerStyle={{ paddingBottom: 32 }}
+        contentContainerStyle={{ paddingBottom: 8 + 60 /* espaço para o tab bar */ }}
       />
     </View>
   )
@@ -156,10 +121,6 @@ const styles = StyleSheet.create({
   recommendedGridRow: {
     flex: 1,
   },
-  topLeftCorner: { borderTopLeftRadius: 8 },
-  topRightCorner: { borderTopRightRadius: 8 },
-  bottomLeftCorner: { borderBottomLeftRadius: 8 },
-  bottomRightCorner: { borderBottomRightRadius: 8 },
 
   gridCell: {
     flex: 1,
