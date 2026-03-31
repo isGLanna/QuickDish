@@ -1,4 +1,6 @@
-export const categories = [
+import type { Category, Dish, Restaurant } from '../types/food.types'
+
+export const categories: Category[] = [
   { id: 1, category: 'Pizza', icon: '🍕' },
   { id: 2, category: 'Hambúrguer', icon: '🍔' },
   { id: 3, category: 'Marmita', icon: '🍱' },
@@ -8,7 +10,7 @@ export const categories = [
   { id: 7, category: 'Gelados', icon: '🍨' },
 ]
 
-export const popularItems = [
+export const popularItems: Dish[] = [
   { id: 1, name: 'Pizza Margherita', price: 2999, category: 'Pizza', image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092', rating: 4.5 },
   { id: 2, name: 'Hambúrguer Clássico', price: 1999, category: 'Hambúrguer', image: 'https://images.unsplash.com/photo-1550547660-d9450f859349', rating: 4.0 },
   { id: 3, name: 'Sushi de Salmão', price: 3999, category: 'Sushi', image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c', rating: 4.8 },
@@ -19,7 +21,7 @@ export const popularItems = [
   { id: 8, name: 'Pizza Pepperoni', price: 3199, category: 'Pizza', image: 'https://images.unsplash.com/photo-1594007654729-407eedc4be65', rating: 4.4 },
 ]
 
-export const restaurants = [
+export const restaurants: Restaurant[] = [
   { id: 1, name: "McDonald's", image: "https://logo-teka.com/wp-content/uploads/2025/06/mcdonalds-sign-logo.png" },
   { id: 2, name: "Pizza Hut", image: "https://www.pngkey.com/png/detail/123-1230034_pizza-hut-logo-transparent.png" },
   { id: 3, name: "Subway", image: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Subway_2016_logo.svg" },
@@ -29,7 +31,7 @@ export const restaurants = [
   { id: 7, name: "Domino's Pizza", image: "https://upload.wikimedia.org/wikipedia/commons/7/74/Dominos_pizza_logo.svg" }
 ]
 
-export const recommendedItems = [
+export const recommendedItems: Dish[] = [
   { id: 1, name: 'Pizza Margherita', price: 2999, category: 'Pizza', image: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092', rating: 4.5 },
   { id: 2, name: 'Hambúrguer Clássico', price: 1999, category: 'Hambúrguer', image: 'https://images.unsplash.com/photo-1550547660-d9450f859349', rating: 4.0 },
   { id: 3, name: 'Sushi de Salmão', price: 3999, category: 'Sushi', image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c', rating: 4.8 },
