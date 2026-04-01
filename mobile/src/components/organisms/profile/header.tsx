@@ -4,15 +4,25 @@ import { StyleSheet, View } from 'react-native'
 import { Image } from 'react-native'
 import { Button } from '@comp/button'
 import { VerticalLine } from '@comp/vertical-line'
+import Icon from '@expo/vector-icons/AntDesign'
 
-// criar props para o componente, para receber os dados do usuário
 interface HeaderProps {
   user: { name: string, surname: string, type: string, photo: string }
+  onEditPress?: () => void
 }
 
-export function Header({ user }: HeaderProps) {
+export function Header({ user, onEditPress }: HeaderProps) {
   return (
     <ThemedView style={styles.container}>
+      <Button
+        style={styles.editButton}
+        accessibilityRole='button'
+        accessibilityLabel='Editar perfil'
+        onPress={onEditPress}
+      >
+        <Icon name="edit" size={16} color="#fff" />
+      </Button>
+
       <View style={styles.header}>
         <Image source={{ uri: user.photo }} style={styles.avatar} />
         <ThemedView style={styles.description}>
@@ -28,8 +38,8 @@ export function Header({ user }: HeaderProps) {
         </Button>
         <VerticalLine />
         <Button style={styles.card}>
-          <ThemedText type='defaultSemiBold'>Reclamações</ThemedText>
-          <ThemedText type='defaultRegular'>0 reclamações</ThemedText>
+          <ThemedText type='defaultSemiBold'>Avaliações</ThemedText>
+          <ThemedText type='defaultRegular'>0 avaliações</ThemedText>
         </Button>
       </View>
     </ThemedView>
@@ -38,11 +48,22 @@ export function Header({ user }: HeaderProps) {
 
 const styles = StyleSheet.create({
   container: {
+    position: 'relative',
     flexDirection: 'column',
-    borderRadius: 50,
+    borderRadius: 16,
     borderWidth: 1,
     borderBottomWidth: 1,
     padding: 8,
+  },
+
+  editButton: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    zIndex: 1,
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 999,
   },
 
   header: {
@@ -61,18 +82,19 @@ const styles = StyleSheet.create({
   avatar: {
     width: 100,
     height: 100,
-    borderRadius: 100,
+    borderRadius: 16,
     alignSelf: 'center',
   },
 
   stats: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBlock: 16,
+    marginBlock: 4,
   },
 
   card: {
     flexDirection: 'column',
+    width: '45%',
     gap: 4,
   }
 })

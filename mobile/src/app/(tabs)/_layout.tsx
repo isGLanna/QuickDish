@@ -33,7 +33,9 @@ export default function TabLayout() {
             <View style={[buttonStyle, { flexDirection: direction }]}>
               {focused && <View style={styles.selected} />}
               <IconSymbol size={24} name="house.fill" color={color} />
-
+                <Text style={{ color: '#fff', marginLeft: 5 }}>
+                  Perfil
+                </Text>
               {!isMobile && (
                 <Text style={{ color: '#fff', marginLeft: 5 }}>
                   Início
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#2e1d0abe',
     height: 50,
-    maxWidth: 700,
+    maxWidth: 680,
     marginInline: 'auto',
     marginBottom: 10,
     borderRadius: 100,
@@ -92,10 +94,12 @@ const styles = StyleSheet.create({
   },
 
   buttonMobile: {
-    marginTop: 5,
+    marginTop: 10,      // Margin do pai está afetando o filho por algum motivo, então adicionamos outra margem para compensar
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,
+    paddingHorizontal: 50,
+    height: 50,
     overflow: 'hidden',
   },
 
@@ -105,7 +109,7 @@ const styles = StyleSheet.create({
     right: -5,
     top: 0,
     bottom: 0,
-    borderRadius: 50,
+    borderRadius: 10,
     backgroundColor: '#ffffff30',
     zIndex: -1,
   },

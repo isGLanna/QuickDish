@@ -1,13 +1,12 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { ThemedView } from '@comp/themed-view'
-import { ListItem } from '@comp/list-item'
-import { useContext } from 'react'
+import { ThemedView, ThemedText, ListItem } from '@comp/index'
 import { ThemeContext } from '@/contexts/theme-color'
 import { Header } from '@comp/organisms/profile/header'
-import { Colors } from '@/styles/theme'
+import { useRouter } from 'expo-router'
 
 export default function Profile() {
+  const router = useRouter()
   const [user] = useState<{ name: string, surname: string, type: string, photo: string}> ({ name: 'Giordano', surname: 'Lanna', type: 'Cliente', photo: "https://avatars.githubusercontent.com/u/167474669?v=4"})
 
   const currentTheme = useContext(ThemeContext)
@@ -19,14 +18,18 @@ export default function Profile() {
 
   return (
     <View style={styles.container}>
-      <Header user={user} />
+      <Header user={user} onEditPress={() => router.push('/settings')} />
+
+      <View style={styles.sectionTitle}>
+        <ThemedText type='defaultSemiBold'>Minha Conta</ThemedText>
+      </View>
 
       <ThemedView style={styles.ul}>
-        <ListItem style={styles.li}>Meus pedidos</ListItem>
         <ListItem style={styles.li}>Favoritos</ListItem>
-        <ListItem style={styles.li}>Configurações</ListItem>
         <ListItem style={styles.li} onPress={toggleTheme}>Tema de cor</ListItem>
-        <ListItem style={[styles.li, {borderColor: Colors.red._400}]}>Sair</ListItem>
+        <ListItem style={styles.li} onPress={() => router.push('/settings')}>Configurações</ListItem>
+        <ListItem style={styles.li}>Termos de privacidade</ListItem>
+        <ListItem style={[styles.li, styles.liLast]}>Sair</ListItem>
       </ThemedView>
 
     </View>
@@ -37,25 +40,38 @@ export default function Profile() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 4,
-    margin: 8,
-    borderRadius: 8,
+    padding: 8,
+    margin: 10,
+    borderRadius: 12,
     flexDirection: 'column',
+    gap: 10,
+  },
+
+  sectionTitle: {
+    gap: 2,
+    paddingHorizontal: 6,
   },
 
   ul: {
     flex: 1,
-    marginTop: 16,
-    borderRadius: 8,
-    padding: 0,
+    borderWidth: 1,
+    marginBottom: 16 + 50,
+    borderRadius: 16,
+    paddingVertical: 6,
+    overflow: 'hidden',
   },
 
   li: {
-    paddingBlock: 16,
-    marginInline: 8,
+    paddingVertical: 16,
+    paddingHorizontal: 14,
+    marginHorizontal: 8,
     justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomWidth: 1.5,
+    alignItems: 'flex-start',
+    borderBottomWidth: 1,
     borderColor: '#ccc',
-  }
+  },
+
+  liLast: {
+    borderBottomWidth: 0,
+  },
 })

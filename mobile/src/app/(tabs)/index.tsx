@@ -7,17 +7,20 @@ import { SearchBar } from '@/components/molecules/search-bar'
 import { CategoryCard, Card } from '@/components/organisms/home/index'
 import { categories, popularItems, restaurants, recommendedItems } from '@/api/food'
 import { useState, useCallback, useMemo } from 'react'
-import { useThemeColor } from '@/hooks/use-theme-color';
 import { ThemedView } from '@/components/themed-view'
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [filters, setFilters] = useState<string[]>([])
   const columns = Dimensions.get('window').width > 500 ? Math.floor(Dimensions.get('window').width / 175) : 2
-  const container = useThemeColor({}, 'container')
 
-  const filteredRecommendedItems = useMemo(
-    () => recommendedItems.filter(item => filters.length === 0 || filters.includes(item.category)),
+  const filteredRecommendedItems = useMemo(() =>
+    recommendedItems.filter(item => filters.length === 0 || filters.includes(item.category)),
+    [filters],
+  )
+
+  const filteredPopularItems = useMemo(() =>
+    popularItems.filter(item => filters.length === 0 || filters.includes(item.category)),
     [filters],
   )
 
@@ -31,7 +34,7 @@ export default function Home() {
     })
   }, [])
 
-  const renderHeader = () => (
+  const renderHeader = (
     <View>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
@@ -57,7 +60,7 @@ export default function Home() {
           horizontal
           style={styles.gridItems}
           showsHorizontalScrollIndicator={false}
-          data={popularItems.filter(item => filters.length === 0 || filters.includes(item.category))}
+          data={filteredPopularItems}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => <Card item={item} />}
         />
