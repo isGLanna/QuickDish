@@ -1,0 +1,1 @@
+import { ThemedView, ThemedText } from '@comp/index'

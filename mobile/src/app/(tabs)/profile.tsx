@@ -29,7 +29,7 @@ export default function Profile() {
         <ListItem style={styles.li} onPress={toggleTheme}>Tema de cor</ListItem>
         <ListItem style={styles.li} onPress={() => router.push('/settings')}>Configurações</ListItem>
         <ListItem style={styles.li}>Termos de privacidade</ListItem>
-        <ListItem style={[styles.li, styles.liLast]}>Sair</ListItem>
+        <ListItem style={[styles.li, styles.liLast]}>Sair da conta</ListItem>
       </ThemedView>
 
     </View>
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
   },
 
   sectionTitle: {
-    gap: 2,
-    paddingHorizontal: 6,
+    paddingHorizontal: 8,
+    marginTop: 4,
   },
 
   ul: {
@@ -57,14 +57,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 16 + 50,
     borderRadius: 16,
-    paddingVertical: 6,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
     overflow: 'hidden',
   },
 
   li: {
     paddingVertical: 16,
-    paddingHorizontal: 14,
-    marginHorizontal: 8,
     justifyContent: 'center',
     alignItems: 'flex-start',
     borderBottomWidth: 1,

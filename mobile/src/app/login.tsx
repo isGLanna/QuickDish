@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
-import { ThemedView } from '@/components/themed-view'
-import { ThemedText } from '@/components/themed-text'
+import { ThemedView, ThemedText } from '@/components/index'
 
 export default function Login() {
   const [ userData, setUserData ] = useState<{ email: string, password: string}>({ email: '', password: ''})

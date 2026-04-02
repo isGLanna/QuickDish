@@ -1,13 +1,9 @@
 import { View, FlatList, StyleSheet, Dimensions } from 'react-native'
-
-import { ThemedText } from '@/components/themed-text'
-import { ThemedFlatList } from '@/components/themed-flatlist'
-
+import { ThemedText, ThemedFlatList, ThemedView } from '@comp/index'
 import { SearchBar } from '@/components/molecules/search-bar'
 import { CategoryCard, Card } from '@/components/organisms/home/index'
 import { categories, popularItems, restaurants, recommendedItems } from '@/api/food'
 import { useState, useCallback, useMemo } from 'react'
-import { ThemedView } from '@/components/themed-view'
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string>('')

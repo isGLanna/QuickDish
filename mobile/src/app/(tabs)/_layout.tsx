@@ -33,14 +33,9 @@ export default function TabLayout() {
             <View style={[buttonStyle, { flexDirection: direction }]}>
               {focused && <View style={styles.selected} />}
               <IconSymbol size={24} name="house.fill" color={color} />
-                <Text style={{ color: '#fff', marginLeft: 5 }}>
-                  Perfil
-                </Text>
-              {!isMobile && (
-                <Text style={{ color: '#fff', marginLeft: 5 }}>
+                <Text style={{ color: '#fff' }}>
                   Início
                 </Text>
-              )}
             </View>
           ),
         }}
@@ -54,12 +49,9 @@ export default function TabLayout() {
             <View style={[buttonStyle, { flexDirection: direction }]}>
               {focused && <View style={styles.selected} />}
               <IconSymbol size={24} name="person.fill" color={color} />
-
-              {!isMobile && (
-                <Text style={{ color: '#fff', marginLeft: 5 }}>
-                  Perfil
-                </Text>
-              )}
+              <Text style={{ color: '#fff' }}>
+                Perfil
+              </Text>
             </View>
           ),
         }}
@@ -73,24 +65,23 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#2e1d0abe',
     height: 50,
-    maxWidth: 680,
+    maxWidth: 500,
     marginInline: 'auto',
-    marginBottom: 10,
+    bottom: 10,
+    marginHorizontal: 'auto',
     borderRadius: 100,
     borderWidth: 1,
     borderColor: '#eba947',
     alignSelf: 'center',
     shadowColor: 'transparent',
-    elevation: 0,
   },
 
   button: {
-    padding: 20,
     flex: 1,
+    padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,
-    overflow: 'hidden',
   },
 
   buttonMobile: {
@@ -98,9 +89,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,
-    paddingHorizontal: 50,
-    height: 50,
-    overflow: 'hidden',
+    height: 40,
+    minWidth: 100,
   },
 
   selected: {
@@ -109,7 +99,7 @@ const styles = StyleSheet.create({
     right: -5,
     top: 0,
     bottom: 0,
-    borderRadius: 10,
+    borderRadius: 50,
     backgroundColor: '#ffffff30',
     zIndex: -1,
   },

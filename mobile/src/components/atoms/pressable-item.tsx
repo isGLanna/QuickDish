@@ -8,7 +8,7 @@ export type ThemedPressableProps = PressableProps & {
   darkColor?: string
 }
 
-export function SelectableItem({ style, lightColor, darkColor, ...otherProps }: ThemedPressableProps) {
+export function PressableItem({ style, lightColor, darkColor, ...otherProps }: ThemedPressableProps) {
   const container = useThemeColor({ light: lightColor, dark: darkColor }, 'container')
   const borderColor = useThemeColor({ light: lightColor, dark: darkColor }, 'border')
 

@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { ThemedText } from '@comp/themed-text'
-import { SelectableItem } from '@comp/selectable-item'
+import { PressableItem, ThemedText } from '@comp/index'
 
 interface CategoriesProps {
   id: number
@@ -10,12 +9,12 @@ interface CategoriesProps {
 
 export function CategoryCard ({ item, handleFilter }: { item: CategoriesProps; handleFilter: (query: string) => void }) {
   return (
-    <SelectableItem
+    <PressableItem
       style={styles.ContentCategories}
       onPress={() => handleFilter(item.category)}>
       <ThemedText >{item.category}</ThemedText>
       <ThemedText style={styles.Emoji}>{item.icon}</ThemedText>
-    </SelectableItem>
+    </PressableItem>
   )
 }
 

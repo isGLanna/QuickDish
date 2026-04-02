@@ -1,5 +1,5 @@
 import { Pressable, type PressableProps, StyleSheet } from 'react-native'
-import { ThemedText } from '@comp/themed-text'
+import { ThemedText } from './themed-text'
 
 import { useThemeColor } from '@/hooks/use-theme-color';
 

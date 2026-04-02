@@ -1,9 +1,6 @@
-import { ThemedView } from '@comp/themed-view'
-import { ThemedText } from '@comp/themed-text'
+import { ThemedText, ThemedView, Button, VerticalLine } from '@comp/index'
 import { StyleSheet, View } from 'react-native'
 import { Image } from 'react-native'
-import { Button } from '@comp/button'
-import { VerticalLine } from '@comp/vertical-line'
 import Icon from '@expo/vector-icons/AntDesign'
 
 interface HeaderProps {
