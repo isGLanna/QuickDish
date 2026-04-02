@@ -106,4 +106,8 @@ export const foodModel = {
     const afterCount = dishStore.popular.length + dishStore.recommended.length
     return afterCount < beforeCount
   },
+
+  favoriteDish(): Dish {
+    const allDishes = [...dishStore.popular]
+  }
 }

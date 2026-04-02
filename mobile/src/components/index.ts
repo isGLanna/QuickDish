@@ -5,3 +5,6 @@ export { PressableItem } from './atoms/pressable-item'
 export { ThemedFlatList } from './atoms/themed-flatlist'
 export { Button } from './atoms/button'
 export { VerticalLine } from './atoms/vertical-line'
+export { HorizontalLine } from './atoms/horizontal-line'
+
+export { Header } from './molecules/header'

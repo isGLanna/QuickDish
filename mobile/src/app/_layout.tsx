@@ -1,4 +1,5 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
+import { Header } from '@comp/index'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -39,7 +40,7 @@ function RootNavigationLayout() {
       <ThemeProvider value={navigationTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="settings" options={{ title: 'Configurações' }} />
+          <Stack.Screen name="settings" options={{ title: 'Configurações', header: () => <Header>Configurações</Header> }} />
           <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
         </Stack>
         <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />

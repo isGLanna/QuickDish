@@ -40,7 +40,6 @@ export default function Profile() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 8,
     margin: 10,
     borderRadius: 12,
     flexDirection: 'column',

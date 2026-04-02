@@ -18,21 +18,21 @@ export default function SettingsScreen() {
       <ThemedView style={styles.section}>
         <ListItem style={styles.item}>Editar perfil</ListItem>
         <ListItem style={styles.item}>Endereços salvos</ListItem>
-        <ListItem style={styles.item}>Métodos de pagamento</ListItem>
+        <ListItem style={[styles.item, styles.liLast]}>Métodos de pagamento</ListItem>
       </ThemedView>
 
       <ThemedText style={styles.title} type='subtitle'>Aplicativo</ThemedText>
       <ThemedView style={styles.section}>
         <ListItem style={styles.item} onPress={toggleTheme}>Alternar tema</ListItem>
         <ListItem style={styles.item}>Idioma</ListItem>
-        <ListItem style={styles.item}>Notificações</ListItem>
+        <ListItem style={[styles.item, styles.liLast]}>Notificações</ListItem>
       </ThemedView>
 
       <ThemedText style={styles.title} type='subtitle'>Privacidade e Suporte</ThemedText>
       <ThemedView style={styles.section}>
         <ListItem style={styles.item}>Política de privacidade</ListItem>
         <ListItem style={styles.item}>Termos de uso</ListItem>
-        <ListItem style={styles.item}>Sair da conta</ListItem>
+        <ListItem style={[styles.item, styles.liLast]}>Sair da conta</ListItem>
       </ThemedView>
 
     </ScrollView>
@@ -41,7 +41,7 @@ export default function SettingsScreen() {
 
 const styles = StyleSheet.create({
   content: {
-    padding: 16,
+    padding: 8,
     gap: 12,
   },
 
@@ -65,5 +65,9 @@ const styles = StyleSheet.create({
 
   spacer: {
     height: 20,
+  },
+
+  liLast: {
+    borderBottomWidth: 0,
   },
 })
