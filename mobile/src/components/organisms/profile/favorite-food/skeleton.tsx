@@ -1,7 +1,6 @@
-import { View, FlatList } from 'react-native'
+import { FlatList } from 'react-native'
 import { columns } from '@/app/(tabs)/index'
-import { Card, CardSkeleton } from '../../home'
-import { ScrollView } from 'react-native-reanimated/lib/typescript/Animated'
+import { CardSkeleton } from '../../home'
 
 export function FavoriteDishesSkeleton() {
   

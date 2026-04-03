@@ -1,4 +1,4 @@
-import { View, FlatList, StyleSheet, Dimensions, ScrollView } from 'react-native'
+import { View, FlatList, StyleSheet, Dimensions } from 'react-native'
 import { ThemedText, ThemedFlatList, ThemedView } from '@comp/index'
 import { SearchBar } from '@/components/molecules/search-bar'
 import { CategoryCard, Card } from '@/components/organisms/home/index'
@@ -88,7 +88,7 @@ export default function Home() {
   )
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={filteredRecommendedItems}
         keyExtractor={item => item.id.toString()}
@@ -99,7 +99,7 @@ export default function Home() {
         columnWrapperStyle={styles.recommendedGridRow}
         contentContainerStyle={{ paddingBottom: 8 + 60 /* espaço para o tab bar */ }}
       />
-    </ScrollView>
+    </View>
   )
 }
 

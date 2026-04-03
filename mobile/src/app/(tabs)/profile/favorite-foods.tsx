@@ -1,11 +1,11 @@
-import { View, ScrollView, StyleSheet, FlatList } from 'react-native'
+import { View, StyleSheet, FlatList } from 'react-native'
 import { foodModel } from '@/api/food-model'
 import { Dish } from '@/types/food.types'
 import { ThemedText } from '@comp/index'
 import { useState, useEffect } from 'react'
 import { FavoriteDishesSkeleton } from '@/components/organisms/profile/favorite-food/skeleton'
 import { columns } from '../index'
-import { Card } from '@comp/organisms/home/card'
+import { CardWithIcon } from '@organisms/profile/favorite-food/card-with-icon'
 
 export default function FavoriteFoods() {
   const [favoriteFoods, setFavoriteFoods] = useState<Dish[]>([])
@@ -15,7 +15,7 @@ export default function FavoriteFoods() {
     const isLoadingFoods = async () => {
       setIsLoading(true)
       try {
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        await new Promise(resolve => setTimeout(resolve, 100));
         const response = await foodModel.getFavoriteDishes()
 
         setFavoriteFoods(response)
@@ -28,35 +28,28 @@ export default function FavoriteFoods() {
     isLoadingFoods()
   }, [])
 
-  const header = (
-    <View>
+  const removeFromFavorites = (id: number) => {
+    setFavoriteFoods(prev => prev.filter(prev => prev.id !== id))
+  }
+  return (
+    <View style={styles.container}>
       <View>
         <ThemedText type='subtitle'>Meus Favoritos</ThemedText>
       </View>
-    </View>
-  )
-
-  return (
-    <View style={styles.container}>
       {isLoading ? (
-          <View>
-            <ThemedText type='subtitle'>Meus Favoritos</ThemedText>
-            <FavoriteDishesSkeleton />
-          </View>
+        <FavoriteDishesSkeleton />
       ) : (
         favoriteFoods.length > 0 ? (
           <FlatList
             data={favoriteFoods}
             numColumns={columns}
             keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => <Card item={item} /> }
-            ListHeaderComponent={header}
+            renderItem={({ item }) => <CardWithIcon item={item} onFavoriteToggle={removeFromFavorites} />}
           />)
         : (
-          <ThemedText>Você ainda não tem alimentos favoritos.</ThemedText>
+          <ThemedText>Salve aquele seu lanche que você gosta!</ThemedText>
         )
       )}
-      
     </View>
   )
 }
