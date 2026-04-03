@@ -20,7 +20,7 @@ export default function Profile() {
     <View style={styles.container}>
       <Header
         user={user}
-        onEditPress={() => router.push('/profile/settings')}
+        onEditPress={() => router.push('/profile/edit-profile')}
       />
 
       <View style={styles.sectionTitle}>

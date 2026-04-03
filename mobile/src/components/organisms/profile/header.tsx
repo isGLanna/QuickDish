@@ -1,5 +1,6 @@
-import { ThemedText, ThemedView, Button, VerticalLine } from '@comp/index'
+import { ThemedText, ThemedView, VerticalLine } from '@comp/index'
 import { StyleSheet, View } from 'react-native'
+import { Touchable } from '@/components/atoms/touchable'
 import { Image } from 'react-native'
 import Icon from '@expo/vector-icons/AntDesign'
 
@@ -11,14 +12,14 @@ interface HeaderProps {
 export function Header({ user, onEditPress }: HeaderProps) {
   return (
     <ThemedView style={styles.container}>
-      <Button
+      <Touchable
         style={styles.editButton}
         accessibilityRole='button'
         accessibilityLabel='Editar perfil'
         onPress={onEditPress}
       >
         <Icon name="edit" size={16} color="#fff" />
-      </Button>
+      </Touchable>
 
       <View style={styles.header}>
         <Image source={{ uri: user.photo }} style={styles.avatar} />
@@ -29,15 +30,15 @@ export function Header({ user, onEditPress }: HeaderProps) {
       </View>
 
       <View style={styles.stats}>
-        <Button style={styles.card}>
+        <Touchable style={styles.card}>
           <ThemedText type='defaultSemiBold'>Meus Pedidos</ThemedText>
           <ThemedText type='defaultRegular'>8 pedidos</ThemedText>
-        </Button>
+        </Touchable>
         <VerticalLine />
-        <Button style={styles.card}>
+        <Touchable style={styles.card}>
           <ThemedText type='defaultSemiBold'>Avaliações</ThemedText>
           <ThemedText type='defaultRegular'>0 avaliações</ThemedText>
-        </Button>
+        </Touchable>
       </View>
     </ThemedView>
   )
@@ -86,12 +87,14 @@ const styles = StyleSheet.create({
   stats: {
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
     marginBlock: 4,
   },
 
   card: {
     flexDirection: 'column',
     width: '45%',
+    alignItems: 'center',
     gap: 4,
   }
 })
