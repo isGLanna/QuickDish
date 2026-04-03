@@ -11,9 +11,11 @@ export function Button({ style, lightColor, darkColor, ...otherProps }: ThemedPr
   const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'container')
   const border = useThemeColor({ light: lightColor, dark: darkColor }, 'border')
 
-  return <Pressable style={(state) => [styles.button, { backgroundColor, borderColor: border },
-    typeof style === 'function' ? style(state) : style]}
-    {...otherProps} />
+  return(
+    <Pressable style={(state) => [styles.button, { backgroundColor, borderColor: border },
+      style instanceof Function ? style(state) : style]}
+      {...otherProps} />
+  )
 }
 
 const styles = StyleSheet.create({
@@ -22,5 +24,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  pressed: {
+    backgroundColor: '#ffffff40',
+    opacity: 0.8,
   }
 })

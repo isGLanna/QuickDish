@@ -40,7 +40,7 @@ function RootNavigationLayout() {
       <ThemeProvider value={navigationTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="settings" options={{ title: 'Configurações', header: () => <Header>Configurações</Header> }} />
+          <Stack.Screen name="settings" options={{header: () => <Header><Header.Content>Configurações</Header.Content></Header> }} />
           <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
         </Stack>
         <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />

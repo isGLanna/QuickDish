@@ -4,25 +4,32 @@ import { useThemeColor } from '@/hooks/use-theme-color'
 import { useRouter } from 'expo-router'
 import Icon from '@expo/vector-icons/Fontisto'
 
-export function Header({ children }: { children: React.ReactNode }) {
-  const router = useRouter()
-  const color  = useThemeColor('background')
+export const Header = Object.assign(function Header({children}: { children: React.ReactNode }) {
+    const router = useRouter()
+    const color  = useThemeColor({}, 'background')
 
-  return (
-    <ThemedView style={[styles.header, { backgroundColor: color }]}>
-      <PressableItem style={{ borderWidth: 0, backgroundColor: 'transparent' }}
-        accessibilityRole='button'
-        accessibilityLabel='Voltar para a tela anterior'
-        onPressOut={() => router.back()}>
-        <Icon name="angle-left" size={16} color="#fff" />
-      </PressableItem>
+    return (
+      <ThemedView style={[styles.header, { backgroundColor: color }]}>
+        <PressableItem style={{ borderWidth: 0, backgroundColor: 'transparent' }}
+          accessibilityRole='button'
+          accessibilityLabel='Voltar para a tela anterior'
+          onPressOut={() => router.back()}>
+          <Icon name="angle-left" size={16} color="#fff" />
+        </PressableItem>
+        {children}
+      </ThemedView>
+    )
+  },
+  {Content: Content}
+)
 
-      <ThemedText style={styles.subtitle} type="subtitle">
+function Content({ children }: { children: React.ReactNode }) {
+    return (
+      <ThemedText style={styles.content} type='subtitle'>
         {children}
       </ThemedText>
-    </ThemedView>
-  )
-}
+    )
+  }
 
 const styles = StyleSheet.create({
   header: {
@@ -33,7 +40,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'rgba(0,0,0,0.1)',
     borderBottomWidth: 1,
   },
-  subtitle: {
+  content: {
     paddingInline: 16,
   }
 })
