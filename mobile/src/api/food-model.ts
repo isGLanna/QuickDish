@@ -107,7 +107,17 @@ export const foodModel = {
     return afterCount < beforeCount
   },
 
-  favoriteDish(): Dish {
+  getFavoriteDishes(): Dish[] {
     const allDishes = [...dishStore.popular]
-  }
+    return allDishes
+  },
+
+  deleteFavoriteDish(id: number): boolean {
+    const beforeCount = dishStore.popular.length
+
+    dishStore.popular = removeById(dishStore.popular, id)
+    
+    const afterCount = dishStore.popular.length
+    return afterCount < beforeCount
+  },
 }

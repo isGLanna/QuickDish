@@ -5,10 +5,11 @@ import { CategoryCard, Card } from '@/components/organisms/home/index'
 import { categories, popularItems, restaurants, recommendedItems } from '@/api/food'
 import { useState, useCallback, useMemo } from 'react'
 
+export const columns = Dimensions.get('window').width > 500 ? Math.floor(Dimensions.get('window').width / 175) : 2
+
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [filters, setFilters] = useState<string[]>([])
-  const columns = Dimensions.get('window').width > 500 ? Math.floor(Dimensions.get('window').width / 175) : 2
 
   const filteredRecommendedItems = useMemo(() =>
     recommendedItems.filter(item => filters.length === 0 || filters.includes(item.category)),
