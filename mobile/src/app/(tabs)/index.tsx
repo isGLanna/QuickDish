@@ -1,11 +1,11 @@
-import { View, FlatList, StyleSheet, Dimensions } from 'react-native'
+import { View, FlatList, StyleSheet, Dimensions, ScrollView } from 'react-native'
 import { ThemedText, ThemedFlatList, ThemedView } from '@comp/index'
 import { SearchBar } from '@/components/molecules/search-bar'
 import { CategoryCard, Card } from '@/components/organisms/home/index'
 import { categories, popularItems, restaurants, recommendedItems } from '@/api/food'
 import { useState, useCallback, useMemo } from 'react'
 
-export const columns = Dimensions.get('window').width > 500 ? Math.floor(Dimensions.get('window').width / 175) : 2
+export const columns = Dimensions.get('window').width > 500 ? Math.floor(Dimensions.get('window').width / 200) : 2
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string>('')
@@ -88,7 +88,7 @@ export default function Home() {
   )
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <FlatList
         data={filteredRecommendedItems}
         keyExtractor={item => item.id.toString()}
@@ -99,7 +99,7 @@ export default function Home() {
         columnWrapperStyle={styles.recommendedGridRow}
         contentContainerStyle={{ paddingBottom: 8 + 60 /* espaço para o tab bar */ }}
       />
-    </View>
+    </ScrollView>
   )
 }
 

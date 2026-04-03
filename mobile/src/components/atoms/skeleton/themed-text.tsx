@@ -22,17 +22,19 @@ export function ThemedTextSkeleton({
   const [ viewWidth, setViewWidth ] = useState(0);
 
   useEffect(() => {
+    animatedValue.setValue(0)
+
     const animation = Animated.loop(
       Animated.timing(animatedValue, {
         toValue: 1,
-        duration: 1200,
+        duration: 1000,
         useNativeDriver: true,
       })
     )
 
     animation.start()
     return () => animation.stop()
-  }, [animatedValue]);
+  }, [animatedValue])
 
   // Interpolação do gradiente
   const translateX = animatedValue.interpolate({
@@ -42,9 +44,9 @@ export function ThemedTextSkeleton({
 
   return (
     <View
-      onLayout={(e) => {setViewWidth(e.nativeEvent.layout.width)}}
+      onLayout={(e) => setViewWidth(e.nativeEvent.layout.width)}
       style={[
-        { backgroundColor: color, overflow: 'hidden', borderRadius: 4 },
+        { backgroundColor: color[0] , overflow: 'hidden', borderRadius: 4 },
         type === 'default' ? styles.default : undefined,
         type === 'title' ? styles.title : undefined,
         type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
@@ -55,9 +57,9 @@ export function ThemedTextSkeleton({
       ]}
     >
       {viewWidth > 0 && (
-        <Animated.View style={[ StyleSheet.absoluteFillObject ,{transform: [{ translateX }]} ]}>
+        <Animated.View style={[ StyleSheet.absoluteFillObject, {transform: [{ translateX }]} ]}>
           <LinearGradient
-            colors={['transparent', 'rgba(255,255,255,0.5)', 'transparent']}
+            colors={['transparent', color[1], 'transparent']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0}}
             style={StyleSheet.absoluteFillObject}
@@ -71,26 +73,26 @@ export function ThemedTextSkeleton({
 const styles = StyleSheet.create({
   default: {
     height: 16,
-    lineHeight: 24,
+    marginBottom: 8,
   },
   defaultSemiBold: {
     height: 16,
-    lineHeight: 24,
+    marginBottom: 8,
   },
   defaultRegular: {
     height: 14,
-    lineHeight: 24,
+    marginBottom: 4,
   },
   title: {
     height: 24,
-    lineHeight: 32,
+    marginBottom: 12,
   },
   subtitle: {
     height: 18,
+    marginBottom: 8,
   },
   link: {
     height: 16,
-    lineHeight: 30,
-    color: '#0a7ea4',
+    marginBottom: 8,
   },
 });

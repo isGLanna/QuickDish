@@ -18,7 +18,7 @@ export const Colors = {
     tabIconSelected: tintLight,
     container: '#f9f9f9',
     border: '#ddd',
-    skeleton: ['#e0e0e0', '#c0c0c0', '#e0e0e0'],
+    skeleton: ['#00000010', '#00000020'],
   },
   dark: {
     text: '#ECEDEE',
@@ -29,7 +29,7 @@ export const Colors = {
     tabIconSelected: tintDark,
     container: '#463e39',
     border: '#eba947',
-    skeleton: ['#e0e0e0', '#c0c0c0', '#e0e0e0'],
+    skeleton: ['#ffffff10', '#ffffff30'],
   },
 
   red: {

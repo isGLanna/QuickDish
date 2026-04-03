@@ -1,9 +1,11 @@
-import { View, ScrollView, StyleSheet } from 'react-native'
+import { View, ScrollView, StyleSheet, FlatList } from 'react-native'
 import { foodModel } from '@/api/food-model'
 import { Dish } from '@/types/food.types'
 import { ThemedText } from '@comp/index'
 import { useState, useEffect } from 'react'
-import { CardSkeleton } from '@/components/organisms/home/card-skeleton'
+import { FavoriteDishesSkeleton } from '@/components/organisms/profile/favorite-food/skeleton'
+import { columns } from '../index'
+import { Card } from '@comp/organisms/home/card'
 
 export default function FavoriteFoods() {
   const [favoriteFoods, setFavoriteFoods] = useState<Dish[]>([])
@@ -13,7 +15,7 @@ export default function FavoriteFoods() {
     const isLoadingFoods = async () => {
       setIsLoading(true)
       try {
-        await new Promise(resolve => setTimeout(resolve, 50000));
+        await new Promise(resolve => setTimeout(resolve, 5000));
         const response = await foodModel.getFavoriteDishes()
 
         setFavoriteFoods(response)
@@ -26,34 +28,42 @@ export default function FavoriteFoods() {
     isLoadingFoods()
   }, [])
 
-  return (
-    <ScrollView style={styles.container}>
+  const header = (
+    <View>
       <View>
         <ThemedText type='subtitle'>Meus Favoritos</ThemedText>
       </View>
+    </View>
+  )
 
-      
-
+  return (
+    <View style={styles.container}>
       {isLoading ? (
-        Array.from({ length: 10 }, (_, i) => <CardSkeleton key={i} />)
+          <View>
+            <ThemedText type='subtitle'>Meus Favoritos</ThemedText>
+            <FavoriteDishesSkeleton />
+          </View>
       ) : (
         favoriteFoods.length > 0 ? (
-          favoriteFoods.map((food) => (
-            <View key={food.id}>
-              <ThemedText>{food.name}</ThemedText>
-            </View>
-          ))
-        ) : (
+          <FlatList
+            data={favoriteFoods}
+            numColumns={columns}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => <Card item={item} /> }
+            ListHeaderComponent={header}
+          />)
+        : (
           <ThemedText>Você ainda não tem alimentos favoritos.</ThemedText>
         )
       )}
       
-    </ScrollView>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container:{
+    flex: 1,
     padding: 8,
   },
 
