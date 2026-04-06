@@ -13,15 +13,17 @@ export function Button({text, type='default', ...rest}: ButtonProps) {
   const color = useThemeColor({}, 'text') as string
 
   const buttonBackgroundColor =
-    type === 'default' ? Colors.blue._500 :
-    type === 'neutral' ? Colors.gray._500 :
+    type === 'default' ? Colors.blue._400 :
+    type === 'neutral' ? Colors.gray._400 :
     type === 'danger' ? Colors.red._500 :
     Colors.green._500
 
   return(
-    <TouchableOpacity style={[styles.button, { backgroundColor: buttonBackgroundColor }]}
+    <TouchableOpacity 
+      style={[styles.button, { backgroundColor: buttonBackgroundColor }]}
+      activeOpacity={0.7}
       {...rest}>
-      <ThemedText style={{ fontWeight: '600', color }}>{text}</ThemedText>
+      <ThemedText style={{ fontWeight: '600', color: '#fff' }}>{text}</ThemedText>
     </TouchableOpacity>
   )
 }

@@ -6,13 +6,13 @@ interface TouchableProps extends TouchableOpacityProps {
 }
 
 export function Touchable({ style, children, ...rest }: TouchableProps) {
-  const containerColor = useThemeColor({}, 'container') as string
-  const borderThemeColor = useThemeColor({}, 'border') as string
+  const backgroundColor = useThemeColor({}, 'container') as string
+  const borderColor = useThemeColor({}, 'border') as string
 
 
   return (
     <TouchableOpacity
-      style={[style, { backgroundColor: containerColor, borderColor: borderThemeColor, height: 60 }]}
+      style={[{ backgroundColor, borderColor, height: 60 }, style]}
       activeOpacity={0.7}
       {...rest}>
       {children}

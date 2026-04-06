@@ -1,5 +1,6 @@
 import { ThemedText, ThemedView, VerticalLine } from '@comp/index'
 import { StyleSheet, View } from 'react-native'
+import { useThemeColor } from '@/hooks/use-theme-color'
 import { Touchable } from '@/components/atoms/touchable'
 import { Image } from 'react-native'
 import Icon from '@expo/vector-icons/AntDesign'
@@ -10,6 +11,7 @@ interface HeaderProps {
 }
 
 export function Header({ user, onEditPress }: HeaderProps) {
+  const textColor = useThemeColor({}, 'text') as string
   return (
     <ThemedView style={styles.container}>
       <Touchable
@@ -18,7 +20,7 @@ export function Header({ user, onEditPress }: HeaderProps) {
         accessibilityLabel='Editar perfil'
         onPress={onEditPress}
       >
-        <Icon name="edit" size={16} color="#fff" />
+        <Icon name="edit" size={20} color={textColor} />
       </Touchable>
 
       <View style={styles.header}>

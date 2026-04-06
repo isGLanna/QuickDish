@@ -6,7 +6,8 @@ import Icon from '@expo/vector-icons/Fontisto'
 
 export const Header = Object.assign(function Header({children}: { children: React.ReactNode }) {
     const router = useRouter()
-    const color  = useThemeColor({}, 'background')
+    const color  = useThemeColor({}, 'background') as string
+    const textColor = useThemeColor({}, 'text') as string
 
     return (
       <ThemedView style={[styles.header, { backgroundColor: color }]}>
@@ -14,7 +15,7 @@ export const Header = Object.assign(function Header({children}: { children: Reac
           accessibilityRole='button'
           accessibilityLabel='Voltar para a tela anterior'
           onPressOut={() => router.back()}>
-          <Icon name="angle-left" size={16} color="#fff" />
+          <Icon name="angle-left" size={16} color={textColor} />
         </PressableItem>
         {children}
       </ThemedView>
