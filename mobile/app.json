@@ -41,6 +41,19 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow QuickDish to access your photos to upload a profile picture.",
+          "cameraPermission": "Allow QuickDish to access your camera to take a profile picture.",
+          "colors": {
+            "cropToolbarColor": "#C9A15B"
+          },
+          "dark": {
+            "cropToolbarColor": "#C9A15B"
+          }
+        }
       ]
     ],
     "experiments": {

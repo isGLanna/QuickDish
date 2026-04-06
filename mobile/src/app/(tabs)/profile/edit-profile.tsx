@@ -5,10 +5,11 @@ import Icon from 'react-native-vector-icons/Feather'
 import { StyleSheet, View } from 'react-native'
 import { router } from 'expo-router'
 import { useState } from 'react'
+import { ImagePickerComponent } from '@molecules/image-picker/image-picker'
 
 export default function EditProfile() {
   const [user, setUser] = useState<{ id: string, name: string, surname: string, type: string, photo: string}> ({ id: '6fcfcab1-9220-89e9-a25e-62c8fff01538', name: 'Giordano', surname: 'Lanna', type: 'Cliente', photo: "https://avatars.githubusercontent.com/u/167474669?v=4"})
-  
+
   return (
     <View style={styles.container}>
       <ThemedView style={styles.content}>
@@ -32,15 +33,14 @@ export default function EditProfile() {
 
         <View style={styles.field}>
           <ThemedText type="defaultSemiBold">Upload de imagem</ThemedText>
-          <Touchable style={styles.upload}>
-            <Icon name="upload" size={20} color={Colors.gray._400} />
-            <ThemedText>Selecionar imagem</ThemedText>
-          </Touchable>
+          <ImagePickerComponent />
         </View>
+
         <View style={styles.submitField}>
           <Button text="Cancelar" type='neutral' onPress={() => router.back()}/>
           <Button text="Salvar" />
         </View>
+
       </ThemedView>
     </View>
   )
@@ -82,14 +82,4 @@ const styles = StyleSheet.create({
     flex: 1,
     borderWidth: 0,
   },
-
-  upload: {
-    borderWidth: 1,
-    borderStyle: 'dashed',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 12,
-    height: 100,
-    width: '100%',
-  }
 })
