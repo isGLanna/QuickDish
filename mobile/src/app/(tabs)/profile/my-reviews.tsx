@@ -1,14 +1,14 @@
 import { View, StyleSheet, FlatList } from 'react-native'
 import { foodModel } from '@/api/food-model'
-import { Dish } from '@/types/food.types'
 import { ThemedText } from '@comp/index'
 import { useState, useEffect } from 'react'
 import { FavoriteDishesSkeleton } from '@/components/organisms/profile/favorite-food/skeleton'
 import { columns } from '../index'
-import { CardWithIcon } from '@organisms/profile/favorite-food/card-with-icon'
+import { ListCard } from '@/components/organisms/list-card'
+import { FoodReview } from '@/types/food-review'
 
-export default function FavoriteFoods() {
-  const [favoriteFoods, setFavoriteFoods] = useState<Dish[]>([])
+export default function MyReviews() {
+  const [availableFoods, setAvailableFoods] = useState<FoodReview[]>([])
   const [ isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function FavoriteFoods() {
         await new Promise(resolve => setTimeout(resolve, 3000));
         const response = await foodModel.getFavoriteDishes()
 
-        setFavoriteFoods(response)
+        setAvailableFoods([])
       } catch (error) {
         alert('Erro ao carregar os alimentos favoritos')
       } finally {
@@ -28,23 +28,26 @@ export default function FavoriteFoods() {
     isLoadingFoods()
   }, [])
 
-  const removeFromFavorites = (id: number) => {
-    setFavoriteFoods(prev => prev.filter(prev => prev.id !== id))
+  const removeReview = (id: number) => {
+    setAvailableFoods(prev => prev.filter(prev => prev.id !== id))
   }
+
+  const adapterNumColumns = columns / 2
+
   return (
     <View style={styles.container}>
       <View>
-        <ThemedText type='subtitle'>Meus Favoritos</ThemedText>
+        <ThemedText type='subtitle'>Minhas avaliações</ThemedText>
       </View>
       {isLoading ? (
         <FavoriteDishesSkeleton />
       ) : (
-        favoriteFoods.length > 0 ? (
+        availableFoods.length > 0 ? (
           <FlatList
-            data={favoriteFoods}
-            numColumns={columns}
+            data={availableFoods}
+            numColumns={adapterNumColumns}
             keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => <CardWithIcon item={item} onFavoriteToggle={removeFromFavorites} />}
+            renderItem={({ item }) => <ListCard item={item} />}
           />)
         : (
           <ThemedText>Salve aquele seu lanche que você gosta!</ThemedText>

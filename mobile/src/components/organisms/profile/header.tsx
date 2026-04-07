@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { useThemeColor } from '@/hooks/use-theme-color'
 import { Touchable } from '@/components/atoms/touchable'
 import { Image } from 'react-native'
+import { router } from 'expo-router'
 import Icon from '@expo/vector-icons/AntDesign'
 
 interface HeaderProps {
@@ -32,12 +33,12 @@ export function Header({ user, onEditPress }: HeaderProps) {
       </View>
 
       <View style={styles.stats}>
-        <Touchable style={styles.card}>
+        <Touchable style={styles.card} onPress={() => router.push('/profile/my-orders')}>
           <ThemedText type='defaultSemiBold'>Meus Pedidos</ThemedText>
           <ThemedText type='defaultRegular'>8 pedidos</ThemedText>
         </Touchable>
         <VerticalLine />
-        <Touchable style={styles.card}>
+        <Touchable style={styles.card} onPress={() => router.push('/profile/my-reviews')}>
           <ThemedText type='defaultSemiBold'>Avaliações</ThemedText>
           <ThemedText type='defaultRegular'>0 avaliações</ThemedText>
         </Touchable>
