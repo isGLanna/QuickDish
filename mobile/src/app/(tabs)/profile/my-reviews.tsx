@@ -2,10 +2,10 @@ import { View, StyleSheet, FlatList } from 'react-native'
 import { foodModel } from '@/api/food-model'
 import { ThemedText } from '@comp/index'
 import { useState, useEffect } from 'react'
-import { FavoriteDishesSkeleton } from '@/components/organisms/profile/favorite-food/skeleton'
 import { columns } from '../index'
 import { ListCard } from '@/components/organisms/list-card'
 import { FoodReview } from '@/types/food-review'
+import { MyReviewsSkeleton } from '@organisms/profile/my-reviews/skeleton'
 
 export default function MyReviews() {
   const [availableFoods, setAvailableFoods] = useState<FoodReview[]>([])
@@ -39,9 +39,7 @@ export default function MyReviews() {
       <View>
         <ThemedText type='subtitle'>Minhas avaliações</ThemedText>
       </View>
-      {isLoading ? (
-        <FavoriteDishesSkeleton />
-      ) : (
+      {isLoading ? (<MyReviewsSkeleton />) : (
         availableFoods.length > 0 ? (
           <FlatList
             data={availableFoods}
@@ -50,7 +48,7 @@ export default function MyReviews() {
             renderItem={({ item }) => <ListCard item={item} />}
           />)
         : (
-          <ThemedText>Salve aquele seu lanche que você gosta!</ThemedText>
+          <ThemedText>Contribua com a comunidade dado a sua opinião!</ThemedText>
         )
       )}
     </View>

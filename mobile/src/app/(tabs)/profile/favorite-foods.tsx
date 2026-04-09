@@ -3,7 +3,7 @@ import { foodModel } from '@/api/food-model'
 import { Dish } from '@/types/food.types'
 import { ThemedText } from '@comp/index'
 import { useState, useEffect } from 'react'
-import { FavoriteDishesSkeleton } from '@/components/organisms/profile/favorite-food/skeleton'
+import { FavoriteDishesSkeleton } from '@organisms/profile/favorite-food/skeleton'
 import { columns } from '../index'
 import { CardWithIcon } from '@organisms/profile/favorite-food/card-with-icon'
 

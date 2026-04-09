@@ -1,16 +1,15 @@
 import { Image, View } from 'react-native'
-import { PressableItem, ThemedText } from '@comp/index'
+import { PressableItem, ThemedText, ThemedView } from '@comp/index'
 
 import { StyleSheet } from 'react-native'
 import { ThemedTextSkeleton } from '@/components/atoms/skeleton/themed-text'
 import { ImageSkeleton } from '@/components/atoms/skeleton/image'
-import { foodReviews } from '@/api/food'
 import type { FoodReview } from '@/types/food-review'
 
 export function ListCard({ item }: { item: FoodReview }) {
   return (
     <PressableItem style={ styles.ContentItems }>
-      <Image source={{ uri: item.foodImage }} style={{ width: 100, height: 100, borderTopLeftRadius: 8, borderBottomLeftRadius: 8 }} />
+      <Image source={{ uri: item.foodImage }} style={{ width: 100, height: 100, borderRadius: 8 }} />
       <View style={styles.descriptionItem}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
           <ThemedText style={{ fontWeight: '500' }} numberOfLines={1} ellipsizeMode="tail">{item.foodName}</ThemedText>
@@ -18,7 +17,7 @@ export function ListCard({ item }: { item: FoodReview }) {
         </View>
 
         {item.comment != undefined && (
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
+        <View style={{ justifyContent: 'space-between', width: '100%' }}>
           <ThemedText>{item.comment}</ThemedText>
         </View>
       )}
@@ -29,15 +28,16 @@ export function ListCard({ item }: { item: FoodReview }) {
 
 export function ListCardSkeleton() {
   return (
-    <PressableItem style={ styles.ContentItems }>
-      <ImageSkeleton style={{ width: '100%', height: 100, borderTopLeftRadius: 8, borderTopRightRadius: 8 }} />
+    <ThemedView style={ styles.ContentItems }>
+      <ImageSkeleton style={{ width: 100, height: 100, borderRadius: 8 }} />
       <View style={styles.descriptionItem}>
         <ThemedTextSkeleton />
-        <View>
+        <View style={{ flexDirection: 'column', justifyContent: 'space-between', width: '100%' }}>
+          <ThemedTextSkeleton style={{ flex: 1 }} />
           <ThemedTextSkeleton style={{ flex: 1 }} />
         </View>
       </View>
-    </PressableItem>
+    </ThemedView>
   )
 }
 

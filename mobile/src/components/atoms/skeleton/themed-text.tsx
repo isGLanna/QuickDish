@@ -73,11 +73,11 @@ export function ThemedTextSkeleton({
 const styles = StyleSheet.create({
   default: {
     height: 16,
-    marginBottom: 8,
+    marginBottom: 4,
   },
   defaultSemiBold: {
     height: 16,
-    marginBottom: 8,
+    marginBottom: 4,
   },
   defaultRegular: {
     height: 14,
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
   title: {
     height: 24,
-    marginBottom: 12,
+    marginBottom: 8,
   },
   subtitle: {
     height: 18,
@@ -93,6 +93,6 @@ const styles = StyleSheet.create({
   },
   link: {
     height: 16,
-    marginBottom: 8,
+    marginBottom: 4,
   },
 });
