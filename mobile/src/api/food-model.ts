@@ -1,4 +1,4 @@
-import { popularItems, recommendedItems } from './food'
+import { popularItems, recommendedItems, foodReviews } from './food'
 import type {
   CreateDishOptions,
   Dish,
@@ -120,4 +120,9 @@ export const foodModel = {
     const afterCount = dishStore.popular.length
     return afterCount < beforeCount
   },
+
+  // Consultar reviews de comidas feitas pelo próprio usuário
+  getFoodReviewsByUser(userId: number) {
+    return foodReviews
+  }
 }

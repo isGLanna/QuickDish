@@ -16,9 +16,9 @@ export default function MyReviews() {
       setIsLoading(true)
       try {
         await new Promise(resolve => setTimeout(resolve, 3000));
-        const response = await foodModel.getFavoriteDishes()
+        const response = await foodModel.getFoodReviewsByUser(1)
 
-        setAvailableFoods([])
+        setAvailableFoods(response)
       } catch (error) {
         alert('Erro ao carregar os alimentos favoritos')
       } finally {
@@ -32,7 +32,7 @@ export default function MyReviews() {
     setAvailableFoods(prev => prev.filter(prev => prev.id !== id))
   }
 
-  const adapterNumColumns = columns / 2
+  const adapterNumColumns = Math.floor(columns / 2)
 
   return (
     <View style={styles.container}>

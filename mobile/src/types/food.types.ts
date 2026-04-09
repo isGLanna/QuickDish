@@ -13,12 +13,6 @@ export interface Dish {
   rating: number
 }
 
-export interface Restaurant {
-  id: number
-  name: string
-  image: string
-}
-
 export type DishPayload = Omit<Dish, 'id'>
 
 export interface DishQuery {

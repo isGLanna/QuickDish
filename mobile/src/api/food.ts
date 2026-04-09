@@ -1,4 +1,5 @@
-import type { Category, Dish, Restaurant } from '../types/food.types'
+import type { Category, Dish } from '../types/food.types'
+import type { Restaurant } from '../types/restaurant'
 
 export const categories: Category[] = [
   { id: 1, category: 'Pizza', icon: '🍕' },
@@ -45,4 +46,10 @@ export const recommendedItems: Dish[] = [
   { id: 11, name: 'Sushi de Salmão', price: 3999, category: 'Sushi', image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c', rating: 4.8 },
   { id: 12, name: 'Caldo de Frango', price: 1599, category: 'Caldo', image: 'https://www.receiteria.com.br/wp-content/uploads/caldo-de-frango-com-batatas.jpeg', rating: 4.2 },
   { id: 16, name: 'Pizza Pepperoni', price: 3199, category: 'Pizza', image: 'https://images.unsplash.com/photo-1594007654729-407eedc4be65', rating: 4.4 },
+]
+
+export const foodReviews = [
+  { id: 1, foodName: 'Pizza Margherita', foodImage: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092', rating: 5, comment: 'A melhor pizza que já comi! Massa fina e sabor incrível.', createdAt: '2024-06-01T12:00:00Z' },
+  { id: 2, foodName: 'Hambúrguer Clássico', foodImage: 'https://images.unsplash.com/photo-1550547660-d9450f859349', rating: 4, comment: 'Muito bom, mas poderia ser um pouco mais suculento.', createdAt: '2024-06-02T15:30:00Z' },
+  { id: 3, foodName: 'Sushi de Salmão', foodImage: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c', rating: 2, comment: 'O sushi é ruim porque eu mesmo já não gosto de peixe, então se lasque mesmo assim. Quero nem saber, fizesse um peixe gostoso com sabor de um churrasco já tava bom!', createdAt: '2024-06-03T18:45:00Z' },
 ]
