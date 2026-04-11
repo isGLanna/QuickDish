@@ -122,7 +122,7 @@ export const foodModel = {
   },
 
   // Consultar reviews de comidas feitas pelo próprio usuário
-  getFoodReviewsByUser(userId: number) {
+  getFoodReviewsByUser() {
     return foodReviews
   }
 }

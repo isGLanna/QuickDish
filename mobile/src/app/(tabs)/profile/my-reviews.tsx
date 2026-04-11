@@ -16,7 +16,7 @@ export default function MyReviews() {
       setIsLoading(true)
       try {
         await new Promise(resolve => setTimeout(resolve, 3000));
-        const response = await foodModel.getFoodReviewsByUser(1)
+        const response = await foodModel.getFoodReviewsByUser()
 
         setAvailableFoods(response)
       } catch (error) {
