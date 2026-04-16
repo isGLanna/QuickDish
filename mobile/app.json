@@ -9,7 +9,10 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey": "${MAPS_API_KEY}"
+      }
     },
     "android": {
       "name": "QuickDish",
@@ -20,6 +23,11 @@
         "foregroundImage": "./src/assets/images/android-icon-foreground.png",
         "backgroundImage": "./src/assets/images/android-icon-background.png",
         "monochromeImage": "./src/assets/images/android-icon-monochrome.png"
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "${MAPS_API_KEY}"
+        }
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
@@ -54,7 +62,12 @@
             "cropToolbarColor": "#C9A15B"
           }
         }
-      ]
+      ],
+      "@rnmapbox/maps",
+      "expo-location",
+      {
+        "locationWhenInUsePermission": "Allow QuickDish to access your location when the app is in use."
+      }
     ],
     "experiments": {
       "typedRoutes": true,

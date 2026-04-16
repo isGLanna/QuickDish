@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ThemedView, ThemedText, ListItem } from '@comp/index'
 import { ThemeContext } from '@/contexts/theme-color'
-import { Header } from '@comp/organisms/profile/header'
+import { Header } from '@/app/(tabs)/profile/component/header'
 import { useRouter } from 'expo-router'
 
 export default function Profile() {
