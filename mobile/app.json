@@ -30,7 +30,12 @@
         }
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "output": "static",
@@ -64,14 +69,22 @@
         }
       ],
       "@rnmapbox/maps",
-      "expo-location",
-      {
-        "locationWhenInUsePermission": "Allow QuickDish to access your location when the app is in use."
-      }
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow QuickDish to access your location when the app is in use."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "a2670eaf-0f07-4607-8300-711a32eaa8d1"
+      }
     }
   }
 }

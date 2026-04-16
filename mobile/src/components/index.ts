@@ -8,5 +8,3 @@ export { VerticalLine } from './atoms/vertical-line'
 export { HorizontalLine } from './atoms/horizontal-line'
 export { Touchable } from './atoms/touchable'
 export { Input } from './atoms/input'
-
-export { Header } from './molecules/header'

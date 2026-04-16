@@ -11,7 +11,7 @@ interface HeaderProps {
   onEditPress?: () => void
 }
 
-export function Header({ user, onEditPress }: HeaderProps) {
+export const Header = ({ user, onEditPress }: HeaderProps) => {
   const textColor = useThemeColor({}, 'text') as string
   return (
     <ThemedView style={styles.container}>
