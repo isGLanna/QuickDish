@@ -2,8 +2,8 @@ import { Image, View } from 'react-native'
 import { PressableItem, ThemedText } from '@comp/index'
 
 import { StyleSheet } from 'react-native'
-import { ThemedTextSkeleton } from '@/components/atoms/skeleton/themed-text'
-import { ImageSkeleton } from '@/components/atoms/skeleton/image'
+import { ThemedTextSkeleton } from '@atoms/skeleton/themed-text'
+import { ImageSkeleton } from '@atoms/skeleton/image'
 
 interface CardProps {
   id: number

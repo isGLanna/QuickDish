@@ -68,7 +68,12 @@
           }
         }
       ],
-      "@rnmapbox/maps",
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsDownloadToken": "${RNMAPBOX_MAPS_DOWNLOAD_TOKEN}"
+        }
+      ],
       [
         "expo-location",
         {

@@ -3,7 +3,7 @@ npx expo start &
 MOBILE_PID=$!
 
 cd ../web
-yarn dev &
+npm run dev &
 WEB_PID=$!
 
 cd ../backend
