@@ -9,10 +9,7 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true,
-      "config": {
-        "googleMapsApiKey": "${MAPS_API_KEY}"
-      }
+      "supportsTablet": true
     },
     "android": {
       "name": "QuickDish",
@@ -23,11 +20,6 @@
         "foregroundImage": "./src/assets/images/android-icon-foreground.png",
         "backgroundImage": "./src/assets/images/android-icon-background.png",
         "monochromeImage": "./src/assets/images/android-icon-monochrome.png"
-      },
-      "config": {
-        "googleMaps": {
-          "apiKey": "${MAPS_API_KEY}"
-        }
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
@@ -68,12 +60,7 @@
           }
         }
       ],
-      [
-        "@rnmapbox/maps",
-        {
-          "RNMapboxMapsDownloadToken": "${RNMAPBOX_MAPS_DOWNLOAD_TOKEN}"
-        }
-      ],
+      "@rnmapbox/maps",
       [
         "expo-location",
         {
